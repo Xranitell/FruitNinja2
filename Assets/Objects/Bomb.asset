@@ -16,7 +16,7 @@ MonoBehaviour:
   mass: 4
   useAnimation: 1
   animRotation: {x: -0.33136055, y: 0.4260358}
-  animScale: {x: 0, y: 1.2}
+  animScale: {x: 0.9, y: 1.2}
   useShadow: 1
   shadowColor: {r: 0, g: 0, b: 0, a: 180}
   shadowOffset: {x: 0.2, y: -0.2}

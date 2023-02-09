@@ -21,7 +21,6 @@ public class Ice : Block
             timer += delay;
             var timeScale = ((IceInfo)blockInfo).stopTimeAnimation.Evaluate(timer);
             Time.timeScale = timeScale;
-            PhysicalObject.SpeedScaler = timeScale;
             yield return new WaitForSecondsRealtime(delay);
         }
         

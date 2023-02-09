@@ -2,47 +2,52 @@ using UnityEngine;
 
 public class Cutter : MonoBehaviour
 {
-    public Vector2 sliceVector;
-    public float speed;
+    [SerializeField] TrailRenderer sliceTrail;
+    [SerializeField] [Range(0,1)] private float needSpeedToCut;
+    [SerializeField] public float strengthOfCut;
     
-    private TrailRenderer _sliceTrail;
-    private Camera _mainCamera;
+    public Vector2 sliceVector;
+    public bool isCutMove;
+    
+    private float _speed;
+    private Vector3 _lastPos;
     
 
     private void Awake()
     {
         DataHolder.Cutter = this;
     }
-    private void Start()
-    {
-        _sliceTrail = GetComponent<TrailRenderer>();
-        _mainCamera = Camera.main;
-    }
+
     void Update()
     {
-        if (Input.touches.Length > 0)
+        if (Input.GetMouseButton(0))
         {
-            var touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Moved)
-            {
-                MoveTrail(touch);
-                speed = Mathf.Sqrt(Mathf.Pow(touch.deltaPosition.x / Time.deltaTime,2) + Mathf.Pow(touch.deltaPosition.y / Time.deltaTime,2));
-                sliceVector = touch.deltaPosition;
-            }
-            else if(touch.phase == TouchPhase.Ended)
-            {
-                speed = 0;
-            }
-            else if(touch.phase == TouchPhase.Began)
-            {
-                MoveTrail(touch);
-            }
+            MoveCut(Input.mousePosition);
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            StopCut();
         }
     }
-    void MoveTrail(Touch touch)
+
+    void MoveCut(Vector3 touchPosition)
     {
-        var pointOnCanvas = _mainCamera.ScreenToWorldPoint(touch.position);
+
+        var pointOnCanvas = DataHolder.MainCamera.ScreenToWorldPoint(touchPosition);
         pointOnCanvas.z = 0;
-        _sliceTrail.transform.position = pointOnCanvas;
+
+        transform.position = Vector3.Lerp(transform.position,pointOnCanvas,1f) ;
+
+        sliceVector = transform.position - _lastPos;
+        _speed = sliceVector.magnitude / Time.deltaTime;
+
+        isCutMove = _speed > needSpeedToCut;
+
+        _lastPos = transform.position;
+    }
+
+    void StopCut()
+    {
+        _speed = 0;
     }
 }

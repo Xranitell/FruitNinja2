@@ -21,7 +21,7 @@ public class WholeBlock : BlockPart
         var offset = new Vector3(spriteRect.width/2, spriteRect.height/2);
         _rect = new Rect(transform.position - offset*1.5f,spriteRect.size*1.5f);
         
-        if (DataHolder.Cutter.speed > 500)
+        if (DataHolder.Cutter.isCutMove)
         {
             if (_rect.Contains(DataHolder.Cutter.transform.position))
             {

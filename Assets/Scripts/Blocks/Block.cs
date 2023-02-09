@@ -67,7 +67,7 @@ public abstract class Block : MonoBehaviour
             blockParts[i].transform.localScale = wholeBlock.transform.localScale;
             var wholePhysicalObject = wholeBlock.physicalObject;
             var impulse = new Vector3(wholePhysicalObject.velocity.x, wholePhysicalObject.velocity.y,0);
-            blockParts[i].physicalObject.AddForce(moveDir + impulse,1);
+            blockParts[i].physicalObject.AddForce(moveDir,DataHolder.Cutter.strengthOfCut, impulse);
         }
     }
 
