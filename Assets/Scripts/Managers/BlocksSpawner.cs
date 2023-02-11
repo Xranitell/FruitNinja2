@@ -12,7 +12,7 @@ public partial class BlocksSpawner : MonoBehaviour
     [SerializeField] private AnimationCurve spawnCount;
     [SerializeField] private AnimationCurve bustSpawnChance;
     
-    [MinMaxSlider(0,20)] public Vector2 force;
+    [MinMaxSlider(-10,10)] public Vector2 force;
     [SerializeField] private Transform blocksStorage;
 
     [Range(0, 1)] [SerializeField] private float maxPercentOfBomb = 0.5f;
@@ -53,12 +53,12 @@ public partial class BlocksSpawner : MonoBehaviour
             
 
             var spawnPosition = DataHolder.SpawnZones.GetPointInRandomZone();
-            var targetPosition = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth/2, cam.pixelHeight * 1.5f)); 
+            var targetPosition = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth/2, cam.pixelHeight)); 
             
             var block = SpawnBlock(selectedBlock, spawnPosition);
             var throwVector = GetForceVector(block.wholeBlock.rectTransform.position, targetPosition);
             
-            ThrowBlock(block, throwVector,Random.Range(force.x,force.y));
+            ThrowBlock(block, throwVector, throwVector.magnitude + Random.Range(force.x,force.y));
             
             yield return new WaitForSeconds(delayBetweenSpawnBlocks.Evaluate(Time.timeSinceLevelLoad));
         }

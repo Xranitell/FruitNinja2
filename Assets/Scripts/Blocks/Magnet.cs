@@ -21,10 +21,12 @@ public class Magnet: Block
 
             foreach (var part in blockParts)
             {
-                var moveVector = wholeBlock.rectTransform.position - part.rectTransform.position;
-                
-                blockParts.ForEach(x=>x.physicalObject.useGravity = false);
-                part.physicalObject.AddForce(moveVector,timer * speed);
+                if (part.Block.GetType() != typeof(Bomb))
+                {
+                    var moveVector = wholeBlock.rectTransform.position - part.rectTransform.position;
+                    blockParts.ForEach(x=>x.physicalObject.useGravity = false);
+                    part.physicalObject.AddForce(moveVector,timer * speed);
+                }
             }
             
             blockParts.ForEach(x=>x.physicalObject.useGravity = true);

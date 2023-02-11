@@ -12,6 +12,7 @@ public static class DataHolder
     public static SpawnZone DeathZone { get; set; }
     public static BlocksSpawner BlocksSpawner { get; set; }
     public static ScoreLabels ScoreLabels { get; set; }
+    public static HealthDisplay HealthDisplay { get; set; }
 
     public static List<Block> Pull = new List<Block>();
     public static List<BlockPart> PullOfBlockParts = new List<BlockPart>();

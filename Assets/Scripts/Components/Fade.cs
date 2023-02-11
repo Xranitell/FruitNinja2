@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Scene = UnityEngine.SceneManagement.Scene;
 
+[RequireComponent(typeof(Image))]
 public class Fade : MonoBehaviour
 {
     [SerializeField] private float fadeDuration = 1f;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WholeBlock : BlockPart
 {
-    private Rect _rect;
+    [SerializeField][Range(0,10)] float colliderRadius = 1;
 
     private void Start()
     {
@@ -19,11 +19,11 @@ public class WholeBlock : BlockPart
     {
         var spriteRect = rectTransform.rect;
         var offset = new Vector3(spriteRect.width/2, spriteRect.height/2);
-        _rect = new Rect(transform.position - offset*1.5f,spriteRect.size*1.5f);
-        
+
         if (DataHolder.Cutter.isCutMove)
         {
-            if (_rect.Contains(DataHolder.Cutter.transform.position))
+            var dist2Cutter = (DataHolder.Cutter.transform.position - transform.position).magnitude;
+            if (colliderRadius >= dist2Cutter)
             {
                 Block.OnCutBlock.Invoke();
             }
@@ -32,6 +32,6 @@ public class WholeBlock : BlockPart
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(_rect.min,_rect.max);
+        Gizmos.DrawWireSphere(transform.position, colliderRadius);
     }
 }

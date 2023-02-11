@@ -24,15 +24,21 @@ public class Cutter : MonoBehaviour
         {
             MoveCut(Input.mousePosition);
         }
-        else if (Input.GetMouseButtonUp(0))
+        
+        if (Input.GetMouseButtonUp(0))
         {
             StopCut();
+            isCutMove = false;
+        }
+        else if (Input.GetMouseButtonDown(0))
+        {
+            MoveCut(Input.mousePosition);
+            sliceTrail.enabled = true;
         }
     }
 
     void MoveCut(Vector3 touchPosition)
     {
-
         var pointOnCanvas = DataHolder.MainCamera.ScreenToWorldPoint(touchPosition);
         pointOnCanvas.z = 0;
 
@@ -49,5 +55,6 @@ public class Cutter : MonoBehaviour
     void StopCut()
     {
         _speed = 0;
+        sliceTrail.enabled = false;
     }
 }

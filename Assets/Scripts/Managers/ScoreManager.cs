@@ -41,7 +41,7 @@ public class ScoreManager : MonoBehaviour
     {
         _multiplier++;
         _pointsInCombo += fruit.points;
-        lastFruitPos = DataHolder.MainCamera.WorldToScreenPoint(fruit.wholeBlock.transform.position);
+        lastFruitPos = fruit.wholeBlock.transform.position;
         _timer = 0;
     }
 

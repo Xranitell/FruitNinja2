@@ -34,11 +34,6 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        ChangeHealthValue(0);
-    }
-
     public void ChangeHealthValue(int value)
     {
         CurrentHealth += value;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TextAnimation : MonoBehaviour
+[RequireComponent(typeof(TMP_Text))]public class TextAnimation : MonoBehaviour
 {
     private int _currentValue;
     [SerializeField] private float timeToUpdate;

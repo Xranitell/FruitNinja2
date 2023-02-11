@@ -30,7 +30,11 @@ public class Shadow : MonoBehaviour
 
     private void Update()
     {
-        spriteRenderer.transform.position = transform.position + (Vector3)offset * transform.localScale.x;
+        var cam = DataHolder.MainCamera;
+        var centerOfScreen = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2));
+        var offset = ( transform.position - centerOfScreen)/15;
+        
+        spriteRenderer.transform.position = transform.position + offset * transform.localScale.x;
         spriteRenderer.transform.rotation = transform.rotation;
     }
 
