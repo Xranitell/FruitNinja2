@@ -24,7 +24,7 @@ using UnityEngine;
     {
         var speed = timeToUpdate / (to - (int)_currentValue);
         
-        while (_currentValue <= to)
+        while (_currentValue < to)
         {
             _currentValue++;
             tmpText.text = additiveWords + _currentValue;

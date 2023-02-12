@@ -46,7 +46,7 @@ public partial class BlocksSpawner : MonoBehaviour
         
         for (int i = 0; i < blockCountInPack; i++)
         {
-            var selectedBlock = BlockFactory.GetBlockByPriority(DataHolder.BlockFactory.blockInfos);
+            var selectedBlock = BlockFactory.GetBlockByPriority(DataHolder.BlockFactory.BlockInfos);
             var blockType = selectedBlock.GetType();
 
             CheckBombSpawn(blockType,ref bombsCount,blockCountInPack);

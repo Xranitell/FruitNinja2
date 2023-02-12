@@ -19,6 +19,7 @@ public class Fruit : Block
     {
         base.BlockCut();
         DataHolder.ScoreManager.RegisterNewCut(this);
+        PointsUIManager.ThisInstance.AddText(points,wholeBlock.transform.position);
     }
 
     protected override void BlockOutFromScreen(bool isWhole)

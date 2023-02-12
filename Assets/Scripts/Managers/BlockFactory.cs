@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
@@ -7,8 +8,7 @@ using Random = UnityEngine.Random;
 
 public partial class BlockFactory : MonoBehaviour
 {
-    [Expandable]
-    public List<BlockInfo> blockInfos = new List<BlockInfo>();
+    public List<BlockInfo> BlockInfos = new List<BlockInfo>();
 
     public void Awake()
     {
@@ -16,7 +16,7 @@ public partial class BlockFactory : MonoBehaviour
         DataHolder.Pull = new List<Block>();
         DataHolder.PullOfBlockParts = new List<BlockPart>();
         
-        foreach (var info in blockInfos)
+        foreach (var info in BlockInfos)
         {
             info.BlockPrefab =CreateBlockPrefab(info);
         }

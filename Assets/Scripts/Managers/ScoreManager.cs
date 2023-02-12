@@ -30,10 +30,9 @@ public class ScoreManager : MonoBehaviour
                 OnComboEnded.Invoke(_multiplier);
             }
             
-            _currentPoints += _pointsInCombo;
+            AddPoints(_pointsInCombo * _multiplier);
             _multiplier = 0;
             _pointsInCombo = 0;
-            AddPoints(_pointsInCombo * _multiplier);
         }
     }
 

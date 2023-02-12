@@ -9,7 +9,7 @@ public class HealthManager : MonoBehaviour
     public int CurrentHealth { get; private set; }
 
     [SerializeField] public int startHealth;
-    [SerializeField] public int maxHealth;
+    [SerializeField][Range(1,20)] public int maxHealth;
 
     public bool LivesIsFull()
     {
