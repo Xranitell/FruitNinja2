@@ -17,9 +17,6 @@ public class WholeBlock : BlockPart
     
     private void CheckBlockOnCut()
     {
-        var spriteRect = rectTransform.rect;
-        var offset = new Vector3(spriteRect.width/2, spriteRect.height/2);
-
         if (DataHolder.Cutter.isCutMove)
         {
             var dist2Cutter = (DataHolder.Cutter.transform.position - transform.position).magnitude;

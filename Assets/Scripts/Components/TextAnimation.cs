@@ -9,10 +9,10 @@ using UnityEngine;
     private int _currentValue;
     [SerializeField] private float timeToUpdate;
 
-    private TMP_Text _tmpText;
+    [SerializeField] TMP_Text tmpText;
     private void Awake()
     {
-        _tmpText = GetComponent<TMP_Text>();
+        tmpText = GetComponent<TMP_Text>();
     }
 
     public void StartAnimation( int newValue, string additiveWords)
@@ -27,10 +27,10 @@ using UnityEngine;
         while (_currentValue <= to)
         {
             _currentValue++;
-            _tmpText.text = additiveWords + _currentValue;
+            tmpText.text = additiveWords + _currentValue;
             yield return new WaitForSeconds(speed);
         }
     }
-    public void SetText(string textAdditive, int value) => _tmpText.text = textAdditive + value;
+    public void SetText(string textAdditive, int value) => tmpText.text = textAdditive + value;
 }
 

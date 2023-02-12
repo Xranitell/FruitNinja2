@@ -44,8 +44,8 @@ public abstract class Block : MonoBehaviour
         
         var sliceVector = DataHolder.Cutter.sliceVector;
         var perpendicular = sliceVector.x > 0? Vector2.Perpendicular(sliceVector): -Vector2.Perpendicular(sliceVector);
-        var degAngle = Vector2.Angle(perpendicular, Vector2.right);
-        var radAngle = degAngle * Mathf.Deg2Rad;
+        var degAngle = Vector2.Angle(perpendicular, Vector2.right) ;
+        var radAngle =degAngle * Mathf.Deg2Rad;
         
         for (int i = 0; i < blockParts.Count; i++)
         {
@@ -66,18 +66,18 @@ public abstract class Block : MonoBehaviour
 
             blockParts[i].transform.localScale = wholeBlock.transform.localScale;
             var wholePhysicalObject = wholeBlock.physicalObject;
-            var impulse = new Vector3(wholePhysicalObject.velocity.x, wholePhysicalObject.velocity.y,0);
+            var impulse = new Vector3(wholePhysicalObject.Velocity.x, wholePhysicalObject.Velocity.y,0);
             blockParts[i].physicalObject.AddForce(moveDir,DataHolder.Cutter.strengthOfCut, impulse);
         }
     }
 
     void ReworkDirAndOffset(Vector2 sliceVector, int i, ref Vector3 moveDir, ref Vector3 offset)
     {
-        if (sliceVector.x>0 && i == 0 || sliceVector.x < 0 && i != 0)
+        if (sliceVector.x>0 && i == 0 || sliceVector.x <= 0 && i != 0)
         {
             moveDir *= -1;
         }
-        if ((sliceVector.x>0 && i == 0) || (sliceVector.x < 0 && i == 0))
+        if ((sliceVector.x>0 && i == 0) || (sliceVector.x <= 0 && i == 0))
         {
             offset *= -1;
         }

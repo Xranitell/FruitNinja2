@@ -14,9 +14,7 @@ public class BlockPart: MonoBehaviour
     private void Awake()
     {
         DataHolder.PullOfBlockParts.Add(this);
-        
         isWhole = false;
-        
         Block = GetComponentInParent<Block>();
     }
 

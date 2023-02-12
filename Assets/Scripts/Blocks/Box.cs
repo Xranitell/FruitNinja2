@@ -16,16 +16,12 @@ public class Box:Block
         for (int i = 0; i < blocksCount; i++)
         {
             var fruit = BlockFactory.GetBlockByPriority(fruitsInfos);
-            
-            var x = Random.Range(-2, 2);
-            var y = Random.Range(0, 2);
-
+            var fruitSpawnPoint = new Vector2(Random.Range(-2, 2), Random.Range(0, 2));
             var position = wholeBlock.rectTransform.position;
-            
-            var block = BlocksSpawner.SpawnBlock(fruit, position + new Vector3(x,y,0));
+            var block = BlocksSpawner.SpawnBlock(fruit, position + new Vector3(fruitSpawnPoint.x,fruitSpawnPoint.y,0));
             
             var throwVector =
-                BlocksSpawner.GetForceVector(position,position + new Vector3(x, y, 0).normalized);
+                BlocksSpawner.GetForceVector(position,position + new Vector3(fruitSpawnPoint.x, fruitSpawnPoint.y, 0).normalized);
             
             BlocksSpawner.ThrowBlock(block, throwVector, 3);
         }

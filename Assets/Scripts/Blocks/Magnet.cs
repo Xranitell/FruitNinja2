@@ -24,12 +24,12 @@ public class Magnet: Block
                 if (part.Block.GetType() != typeof(Bomb))
                 {
                     var moveVector = wholeBlock.rectTransform.position - part.rectTransform.position;
-                    blockParts.ForEach(x=>x.physicalObject.useGravity = false);
+                    blockParts.ForEach(x=>x.physicalObject.UseGravity = false);
                     part.physicalObject.AddForce(moveVector,timer * speed);
                 }
             }
             
-            blockParts.ForEach(x=>x.physicalObject.useGravity = true);
+            blockParts.ForEach(x=>x.physicalObject.UseGravity = true);
             yield return new WaitForSeconds(updateInterval);
         }
     }

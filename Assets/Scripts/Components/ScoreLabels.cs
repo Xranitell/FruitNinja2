@@ -13,7 +13,6 @@ public class ScoreLabels : MonoBehaviour
     private void Awake()
     {
         RecordScore = PlayerPrefs.GetInt("Record");
-        
         DataHolder.ScoreLabels = this;
     }
 

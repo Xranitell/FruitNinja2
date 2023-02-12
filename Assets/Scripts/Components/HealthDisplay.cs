@@ -7,6 +7,7 @@ using System.Linq;
 public class HealthDisplay : MonoBehaviour
 {
     public GameObject heartPrefab;
+    
     private readonly List<GameObject> _pullOfHearts = new List<GameObject>();
     private int _countOfActiveHearts;
 

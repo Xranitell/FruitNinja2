@@ -10,11 +10,14 @@ public class Ice : Block
         var iceInfo = blockInfo as IceInfo;
         base.BlockCut();
         
+        
         StartCoroutine(SlowTime(Time.deltaTime, iceInfo.timeDuration));
+        
     }
 
     IEnumerator SlowTime(float delay, float duration)
     {
+        FreezeEffect.StartFreezeScreen();
         var timer = 0f;
         while (timer < duration)
         {
@@ -23,6 +26,7 @@ public class Ice : Block
             Time.timeScale = timeScale;
             yield return new WaitForSecondsRealtime(delay);
         }
+        FreezeEffect.EndFreezeScreen();
         
     }
 

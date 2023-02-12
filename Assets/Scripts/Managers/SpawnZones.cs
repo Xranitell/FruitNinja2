@@ -23,7 +23,6 @@ public class SpawnZones : MonoBehaviour
     {
         DataHolder.SpawnZones = this;
         DataHolder.MainCamera = Camera.main;
-
         DataHolder.DeathZone = downZone;
         UpdateZones();
     }

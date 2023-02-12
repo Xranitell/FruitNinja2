@@ -10,14 +10,14 @@ public partial class BlocksSpawner : MonoBehaviour
     [SerializeField] private AnimationCurve delayBetweenPacks;
     [SerializeField] private AnimationCurve delayBetweenSpawnBlocks;
     [SerializeField] private AnimationCurve spawnCount;
-    [SerializeField] private AnimationCurve bustSpawnChance;
+    [SerializeField] private AnimationCurve boostSpawnChance;
     
     [MinMaxSlider(-10,10)] public Vector2 force;
     [SerializeField] private Transform blocksStorage;
 
     [Range(0, 1)] [SerializeField] private float maxPercentOfBomb = 0.5f;
 
-    public AnimationCurve BustChanceCurve => bustSpawnChance;
+    public AnimationCurve BoostChanceCurve => boostSpawnChance;
     
     private void Start()
     {

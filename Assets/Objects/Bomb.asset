@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02579fa5d2bdd1d4baf487f10f9769dd, type: 3}
   m_Name: Bomb
   m_EditorClassIdentifier: 
-  chanceToSpawn: 16.6
+  chanceToSpawn: 10
   mass: 4
   useAnimation: 1
   animRotation: {x: -0.33136055, y: 0.4260358}

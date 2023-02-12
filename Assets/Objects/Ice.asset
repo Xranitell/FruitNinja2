@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d825ee088bec44c2b31a587507bcd0d6, type: 3}
   m_Name: Ice
   m_EditorClassIdentifier: 
-  chanceToSpawn: 7.8
+  chanceToSpawn: 4
   mass: 4
   useAnimation: 1
   animRotation: {x: -0.49704137, y: 0.4023672}
@@ -70,14 +70,14 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.10124892
     - serializedVersion: 3
-      time: 0.14622498
-      value: 0.3041504
-      inSlope: -0.21245825
-      outSlope: -0.21245825
+      time: 0.34732592
+      value: 0.4048965
+      inSlope: -0.31523263
+      outSlope: -0.31523263
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.14417866
-      outWeight: 0.33333334
+      outWeight: 0.088005096
     - serializedVersion: 3
       time: 2.5
       value: 0.1
@@ -88,14 +88,14 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 4.5
-      value: 0.3
-      inSlope: 0.26663604
-      outSlope: 0.26663604
+      time: 3.7821908
+      value: 0.35657576
+      inSlope: 0.34812114
+      outSlope: 0.34812114
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.094574794
     - serializedVersion: 3
       time: 5
       value: 1

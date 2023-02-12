@@ -14,7 +14,7 @@ public class IceInfo: BlockInfo, IChanceChanger
 
     public float BustChangedChance(float chance)
     {
-        chance *= DataHolder.BlocksSpawner.BustChanceCurve.Evaluate(Time.time);
+        chance *= DataHolder.BlocksSpawner.BoostChanceCurve.Evaluate(Time.time);
         return chance;
     }
 }

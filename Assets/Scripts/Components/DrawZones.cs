@@ -3,17 +3,17 @@ using UnityEngine;
 [ExecuteAlways]
 public class DrawZones : MonoBehaviour
 {
-    private SpawnZones _spawnZones;
+    [SerializeField] SpawnZones spawnZones;
     private void Awake()
     {
-        _spawnZones = GetComponent<SpawnZones>();
+        spawnZones = GetComponent<SpawnZones>();
     }
 
     private void OnDrawGizmos()
     {
-        if (_spawnZones != null)
+        if (spawnZones != null)
         {
-            foreach (var zone in _spawnZones.Zones)
+            foreach (var zone in spawnZones.Zones)
             {
                 Debug.DrawLine(zone.StartPoint,zone.EndPoint);
             }

@@ -1,16 +1,13 @@
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(TMP_Text))]
 public class FPS : MonoBehaviour
 {
-    private TMP_Text text;
-    void Start()
-    {
-        text = GetComponent<TMP_Text>();
-    }
+    [SerializeField] TMP_Text tmpText;
 
     void Update()
     {
-        text.text = Mathf.RoundToInt(1 / Time.deltaTime).ToString();
+        tmpText.text = Mathf.RoundToInt(1 / Time.deltaTime).ToString();
     }
 }

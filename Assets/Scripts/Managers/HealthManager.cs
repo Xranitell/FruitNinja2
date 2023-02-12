@@ -13,14 +13,7 @@ public class HealthManager : MonoBehaviour
 
     public bool LivesIsFull()
     {
-        if (CurrentHealth >= maxHealth)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return CurrentHealth >= maxHealth ? true : false;
     }
     
     private void Awake()

@@ -11,10 +11,10 @@ public class BlockPartAnimation : MonoBehaviour
     [MinMaxSlider(-1f, 1f)] public Vector2 rotation;
     [Header("Scale Animation")] public Vector2 scale;
 
-    private float speedRotation;
+    private float _speedRotation;
     private void OnEnable()
     {
-        speedRotation = Random.Range(rotation.x,rotation.y);
+        _speedRotation = Random.Range(rotation.x,rotation.y);
         var maxScale = Random.Range(scale.x,scale.y);
         
         DOTween.Sequence()
@@ -25,6 +25,6 @@ public class BlockPartAnimation : MonoBehaviour
 
     private void Update()
     {
-        transform.Rotate(Vector3.forward, speedRotation);
+        transform.Rotate(Vector3.forward, _speedRotation);
     }
 }

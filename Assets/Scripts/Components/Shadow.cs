@@ -11,10 +11,7 @@ public class Shadow : MonoBehaviour
 
     private void RepaintShadow()
     {
-        if (spriteRenderer is null)
-        {
-            spriteRenderer = new GameObject().AddComponent<SpriteRenderer>();
-        }
+        spriteRenderer ??= new GameObject().AddComponent<SpriteRenderer>();
         
         spriteRenderer.transform.SetParent(transform);
         spriteRenderer.sprite = GetComponent<SpriteRenderer>().sprite;
@@ -32,9 +29,9 @@ public class Shadow : MonoBehaviour
     {
         var cam = DataHolder.MainCamera;
         var centerOfScreen = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2));
-        var offset = ( transform.position - centerOfScreen)/15;
+        var offsetToCenter = ( transform.position - centerOfScreen) * DataHolder.Config.shadowOffsetMultiplier;
         
-        spriteRenderer.transform.position = transform.position + offset * transform.localScale.x;
+        spriteRenderer.transform.position = transform.position + offsetToCenter * transform.localScale.x;
         spriteRenderer.transform.rotation = transform.rotation;
     }
 
