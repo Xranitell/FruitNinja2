@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f79a8cca3c72d4d88bbe69fe76c41d, type: 3}
   m_Name: Box
   m_EditorClassIdentifier: 
-  chanceToSpawn: 6.5
+  chanceToSpawn: 12.1
   mass: 4
   useAnimation: 0
   animRotation: {x: 0, y: 0}
@@ -69,3 +69,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 66579d8efe13f244f9e96f5c5fa36aec, type: 2}
   - {fileID: 11400000, guid: c2433c83ede833d41b1bfbef2c41c721, type: 2}
   - {fileID: 11400000, guid: fe78b790420894d4fa58f354d0ba2f61, type: 2}
+  spawnRadius: 2

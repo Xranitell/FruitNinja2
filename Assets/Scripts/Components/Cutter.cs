@@ -3,7 +3,8 @@ using UnityEngine;
 public class Cutter : MonoBehaviour
 {
     [SerializeField] TrailRenderer sliceTrail;
-    [SerializeField] public float strengthOfCut;
+    [SerializeField] public float strengthOfCut; 
+    [SerializeField] [Range(0,500)] public float speedCutterForSlice = 500f;
     
     public Vector2 sliceVector;
     public bool isCutMove;
@@ -46,7 +47,7 @@ public class Cutter : MonoBehaviour
         sliceVector = transform.position - _lastPos;
         _speed = sliceVector.magnitude / Time.deltaTime;
 
-        isCutMove = _speed > DataHolder.Config.speedCutterForSlice;
+        isCutMove = _speed > speedCutterForSlice;
 
         _lastPos = transform.position;
     }

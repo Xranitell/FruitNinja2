@@ -3271,7 +3271,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 5
+      value: 2
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3279,13 +3279,13 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 119.81299
-      value: 3.5037408
-      inSlope: 0.0017728156
-      outSlope: 0.0017728156
+      time: 120.669266
+      value: 1.9965878
+      inSlope: -0.000042376163
+      outSlope: -0.000042376163
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.17130134
+      inWeight: 0.088215105
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -3420,7 +3420,6 @@ MonoBehaviour:
   gravity: 9.8
   impulseMultiplier: 1
   shadowOffsetMultiplier: 0.07
-  speedCutterForSlice: 0.519
 --- !u!1 &1903186567
 GameObject:
   m_ObjectHideFlags: 0
@@ -4141,6 +4140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sliceTrail: {fileID: 2119471927}
   strengthOfCut: 2
+  speedCutterForSlice: 64
   sliceVector: {x: 0, y: 0}
   isCutMove: 0
 --- !u!1001 &8462967429830608272
