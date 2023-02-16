@@ -363,6 +363,7 @@ Transform:
   - {fileID: 22003421}
   - {fileID: 2065629665}
   - {fileID: 1837471947}
+  - {fileID: 2136691470}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4077,7 +4078,7 @@ TrailRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 0.9150943, g: 0.58019257, b: 0.07251684, a: 0.6901961}
+      key1: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 0.1882353}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4092,7 +4093,7 @@ TrailRenderer:
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 30069
+      atime0: 25058
       atime1: 65535
       atime2: 0
       atime3: 0
@@ -4140,9 +4141,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sliceTrail: {fileID: 2119471927}
   strengthOfCut: 2
-  speedCutterForSlice: 64
+  speedCutterForSlice: 20
   sliceVector: {x: 0, y: 0}
-  isCutMove: 0
+  _isCutMove: 0
+--- !u!1 &2136691469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2136691470}
+  - component: {fileID: 2136691472}
+  - component: {fileID: 2136691471}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2136691470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136691469}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 147813871}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2136691471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136691469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2736e1c25f7ae394fae7287a380a1091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickRate: 0.05
+--- !u!114 &2136691472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136691469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6bde08c2eebf6648999d2b4b5e7e5d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8462967429830608272
 PrefabInstance:
   m_ObjectHideFlags: 0

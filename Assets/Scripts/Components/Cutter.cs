@@ -7,7 +7,17 @@ public class Cutter : MonoBehaviour
     [SerializeField] [Range(0,500)] public float speedCutterForSlice = 500f;
     
     public Vector2 sliceVector;
-    public bool isCutMove;
+
+    public bool IsCutMove
+    {
+        get => _isCutMove;
+        private set
+        {
+            _isCutMove = value;
+            sliceTrail.startColor =Color.Lerp(sliceTrail.startColor,IsCutMove? Color.red:Color.gray,1f) ;
+        }
+    }
+    public bool _isCutMove;
     
     private float _speed;
     private Vector3 _lastPos;
@@ -21,7 +31,7 @@ public class Cutter : MonoBehaviour
 
     void ChangeCutterColor()
     {
-        sliceTrail.startColor =isCutMove? Color.red:Color.gray;
+        sliceTrail.startColor =IsCutMove? Color.red:Color.gray;
     }
     
     void Update()
@@ -34,7 +44,7 @@ public class Cutter : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             StopCut();
-            isCutMove = false;
+            IsCutMove = false;
         }
         else if (Input.GetMouseButtonDown(0))
         {
@@ -55,11 +65,11 @@ public class Cutter : MonoBehaviour
 
         if (_speed > speedCutterForSlice)
         {
-            isCutMove = true;
+            IsCutMove = true;
         }
         else
         {
-            isCutMove = false;
+            IsCutMove = false;
         }
         ;
 

@@ -17,7 +17,7 @@ public class WholeBlock : BlockPart
     
     private void CheckBlockOnCut()
     {
-        if (DataHolder.Cutter.isCutMove)
+        if (DataHolder.Cutter.IsCutMove)
         {
             var dist2Cutter = (DataHolder.Cutter.transform.position - transform.position).magnitude;
             if (colliderRadius >= dist2Cutter)
