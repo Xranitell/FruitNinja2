@@ -26,12 +26,6 @@ public class Cutter : MonoBehaviour
     private void Awake()
     {
         DataHolder.Cutter = this;
-        UniversalUpdate.Instance.OnTick = ChangeCutterColor;
-    }
-
-    void ChangeCutterColor()
-    {
-        sliceTrail.startColor =IsCutMove? Color.red:Color.gray;
     }
     
     void Update()
