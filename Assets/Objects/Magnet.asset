@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c15a333274e2f4eafde8f83b7e2c67, type: 3}
   m_Name: Magnet
   m_EditorClassIdentifier: 
-  chanceToSpawn: 16.6
+  priority: 37
   mass: 4
   useAnimation: 1
   animRotation: {x: -2.6845636, y: 3.3951836}

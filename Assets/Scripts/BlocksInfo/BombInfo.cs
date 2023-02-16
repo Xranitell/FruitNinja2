@@ -14,7 +14,7 @@ public class BombInfo : BlockInfo
         {
             if (CanBeSpawned)
             {
-                return chanceToSpawn;
+                return priority;
             }
             else
             {

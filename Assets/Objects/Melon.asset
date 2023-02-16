@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2f03d81e4c1ba4fbab4f061e43ef48, type: 3}
   m_Name: Melon
   m_EditorClassIdentifier: 
-  chanceToSpawn: 25.2
+  priority: 44
   mass: 4
   useAnimation: 1
   animRotation: {x: -0.3412032, y: 0.311817}

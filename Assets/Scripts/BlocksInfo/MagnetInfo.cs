@@ -7,7 +7,7 @@ using UnityEngine;
 public class MagnetInfo : BlockInfo, IChanceChanger
 {
     public override Type BlockType { get; set; } = typeof(Magnet);
-    public override float ChanceToSpawn => BustChangedChance(chanceToSpawn);
+    public override float ChanceToSpawn => BustChangedChance(priority);
 
     public float BustChangedChance(float chance)
     {

@@ -14,7 +14,7 @@ public partial class BlockFactory : MonoBehaviour
     {
         DataHolder.BlockFactory = this;
         DataHolder.Pull = new List<Block>();
-        DataHolder.PullOfBlockParts = new List<BlockPart>();
+        DataHolder.AllActiveBlockParts = new List<BlockPart>();
         
         foreach (var info in BlockInfos)
         {

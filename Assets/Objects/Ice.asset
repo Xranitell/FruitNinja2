@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d825ee088bec44c2b31a587507bcd0d6, type: 3}
   m_Name: Ice
   m_EditorClassIdentifier: 
-  chanceToSpawn: 4
+  priority: 41
   mass: 4
   useAnimation: 1
   animRotation: {x: -0.49704137, y: 0.4023672}
@@ -70,43 +70,43 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.10124892
     - serializedVersion: 3
-      time: 0.34732592
-      value: 0.4048965
-      inSlope: -0.31523263
-      outSlope: -0.31523263
+      time: 0.05170214
+      value: 0.39711452
+      inSlope: -1.3825328
+      outSlope: -1.3825328
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.14417866
-      outWeight: 0.088005096
+      outWeight: 0.15342672
     - serializedVersion: 3
-      time: 2.5
-      value: 0.1
-      inSlope: -0.008937351
-      outSlope: -0.008937351
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 3.7821908
-      value: 0.35657576
-      inSlope: 0.34812114
-      outSlope: 0.34812114
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.094574794
-    - serializedVersion: 3
-      time: 5
-      value: 1
-      inSlope: 0.45695865
-      outSlope: 0.45695865
+      time: 0.49780273
+      value: 0.199646
+      inSlope: -0.0012674293
+      outSlope: -0.0012674293
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.1167738
-      outWeight: 0
+      outWeight: 0.31995365
+    - serializedVersion: 3
+      time: 0.7525277
+      value: 0.29959944
+      inSlope: 0.95344144
+      outSlope: 0.95344144
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.17245953
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 3.1757298
+      outSlope: 3.1757298
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.116750814
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   updateRate: 0.02
-  timeDuration: 5
+  timeDuration: 3

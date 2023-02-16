@@ -6,7 +6,7 @@ public class LifeInfo : BlockInfo,IChanceChanger
 {
     public override Type BlockType { get; set; } = typeof(Life);
     public static bool CanBeSpawned { get; set; }
-    public override float ChanceToSpawn => CanBeSpawned ? BustChangedChance(chanceToSpawn) : 0;
+    public override float ChanceToSpawn => CanBeSpawned ? BustChangedChance(priority) : 0;
 
     public float BustChangedChance(float chance)
     {

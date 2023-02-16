@@ -16,6 +16,6 @@ public static class DataHolder
     public static Config Config { get; set; }
 
     public static List<Block> Pull = new List<Block>();
-    public static List<BlockPart> PullOfBlockParts = new List<BlockPart>();
+    public static List<BlockPart> AllActiveBlockParts = new List<BlockPart>();
 }
  

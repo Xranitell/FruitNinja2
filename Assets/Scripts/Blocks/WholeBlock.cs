@@ -22,6 +22,7 @@ public class WholeBlock : BlockPart
             var dist2Cutter = (DataHolder.Cutter.transform.position - transform.position).magnitude;
             if (colliderRadius >= dist2Cutter)
             {
+                DataHolder.AllActiveBlockParts.Remove(this);
                 Block.OnCutBlock.Invoke();
             }
         }

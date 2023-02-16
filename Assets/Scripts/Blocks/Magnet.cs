@@ -13,7 +13,7 @@ public class Magnet: Block
     IEnumerator AttractBlockParts(float updateInterval, float duration, float speed)
     {
         var timer = 0f;
-        var blockParts = DataHolder.PullOfBlockParts;
+        var blockParts = DataHolder.AllActiveBlockParts;
 
         while (timer < duration)
         {

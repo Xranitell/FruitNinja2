@@ -9,25 +9,7 @@ public class Ice : Block
     {
         var iceInfo = blockInfo as IceInfo;
         base.BlockCut();
-        
-        
-        StartCoroutine(SlowTime(Time.deltaTime, iceInfo.timeDuration));
-        
-    }
-
-    IEnumerator SlowTime(float delay, float duration)
-    {
-        FreezeEffect.StartFreezeScreen();
-        var timer = 0f;
-        while (timer < duration)
-        {
-            timer += delay;
-            var timeScale = ((IceInfo)blockInfo).stopTimeAnimation.Evaluate(timer);
-            Time.timeScale = timeScale;
-            yield return new WaitForSecondsRealtime(delay);
-        }
-        FreezeEffect.EndFreezeScreen();
-        
+        TimeManager.Instance.ChangeTimeScale(iceInfo.updateRate,iceInfo.timeDuration,iceInfo.stopTimeAnimation);
     }
 
     protected override void BlockOutFromScreen(bool isWhole)

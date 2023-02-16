@@ -13,7 +13,7 @@ public class BlockPart: MonoBehaviour
 
     private void Awake()
     {
-        DataHolder.PullOfBlockParts.Add(this);
+        
         isWhole = false;
         Block = GetComponentInParent<Block>();
     }
@@ -21,6 +21,7 @@ public class BlockPart: MonoBehaviour
     private void OnBecameVisible()
     {
         readyToSpawn = false;
+        DataHolder.AllActiveBlockParts.Add(this);
     }
 
     public virtual void Update()
@@ -30,6 +31,7 @@ public class BlockPart: MonoBehaviour
             readyToSpawn = true;
             gameObject.SetActive(false);
             Block.OnReadyStatementChanged?.Invoke(isWhole);
+            DataHolder.AllActiveBlockParts.Remove(this);
         }
     }
 }

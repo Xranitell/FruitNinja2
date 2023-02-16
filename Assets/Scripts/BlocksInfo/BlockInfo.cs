@@ -5,11 +5,11 @@ using UnityEngine;
 
 public abstract class BlockInfo : ScriptableObject
 {
-    [SerializeField][Range(0, 100)] protected float chanceToSpawn;
+    [SerializeField][Range(0, 500)] protected float priority;
 
     public float mass = 4;
     
-    public virtual float ChanceToSpawn => chanceToSpawn;
+    public virtual float ChanceToSpawn => priority;
     public abstract Type BlockType { get; set; }
 
     [BoxGroup("Animation")]public bool useAnimation;

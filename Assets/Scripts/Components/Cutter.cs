@@ -16,8 +16,14 @@ public class Cutter : MonoBehaviour
     private void Awake()
     {
         DataHolder.Cutter = this;
+        UniversalUpdate.Instance.OnTick = ChangeCutterColor;
     }
 
+    void ChangeCutterColor()
+    {
+        sliceTrail.startColor =isCutMove? Color.red:Color.gray;
+    }
+    
     void Update()
     {
         if (Input.GetMouseButton(0))
@@ -47,7 +53,15 @@ public class Cutter : MonoBehaviour
         sliceVector = transform.position - _lastPos;
         _speed = sliceVector.magnitude / Time.deltaTime;
 
-        isCutMove = _speed > speedCutterForSlice;
+        if (_speed > speedCutterForSlice)
+        {
+            isCutMove = true;
+        }
+        else
+        {
+            isCutMove = false;
+        }
+        ;
 
         _lastPos = transform.position;
     }

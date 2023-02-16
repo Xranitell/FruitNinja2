@@ -24,7 +24,7 @@ public class RestartPopup : MonoBehaviour
 
     private IEnumerator BoardClear()
     {
-        while (DataHolder.PullOfBlockParts.Any(x=>x.readyToSpawn != true))
+        while (DataHolder.AllActiveBlockParts.Any(x=>x.readyToSpawn != true))
         {
             yield return new WaitForSeconds(0.3f);
         }

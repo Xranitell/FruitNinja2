@@ -13,7 +13,7 @@ public class Bomb : Block
 
     void AddExplosionForce()
     {
-        foreach (var part in DataHolder.PullOfBlockParts)
+        foreach (var part in DataHolder.AllActiveBlockParts)
         {
             var throwVector = part.transform.position - wholeBlock.transform.position;
             part.physicalObject.AddForce(throwVector,1/throwVector.magnitude *
