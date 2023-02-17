@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,20 +18,25 @@ public partial class BlocksSpawner : MonoBehaviour
 
     [Range(0, 1)] [SerializeField] private float maxPercentOfBomb = 0.5f;
 
+    public float countMultiplier = 1;
+    public float delayBetweenPacksMultiplier = 1;
+
+    public List<BlockInfo> blocksToSpawn;
+
     public AnimationCurve BoostChanceCurve => boostSpawnChance;
     
     private void Start()
     {
         DataHolder.BlocksSpawner = this;
+        blocksToSpawn = DataHolder.BlockFactory.BlockInfos;
         StartCoroutine(SpawnPacks());
     }
-    
     
     private IEnumerator SpawnPacks()
     {
         while (true)
         {
-            yield return new WaitForSeconds(delayBetweenPacks.Evaluate(Time.timeSinceLevelLoad));
+            yield return new WaitForSeconds(delayBetweenPacks.Evaluate(Time.timeSinceLevelLoad) * delayBetweenPacksMultiplier);
             StartCoroutine(SpawnPack());
         }
     }
@@ -42,16 +48,15 @@ public partial class BlocksSpawner : MonoBehaviour
         BombInfo.CanBeSpawned = true;
         LifeInfo.CanBeSpawned = !DataHolder.HealthManager.LivesIsFull();
 
-        var blockCountInPack = Mathf.RoundToInt(Random.Range(1,spawnCount.Evaluate(Time.timeSinceLevelLoad)));
+        var blockCountInPack = Mathf.RoundToInt(Random.Range(1,spawnCount.Evaluate(Time.timeSinceLevelLoad) * countMultiplier));
         
         for (int i = 0; i < blockCountInPack; i++)
         {
-            var selectedBlock = BlockFactory.GetBlockByPriority(DataHolder.BlockFactory.BlockInfos);
+            var selectedBlock = BlockFactory.GetBlockByPriority(blocksToSpawn);
             var blockType = selectedBlock.GetType();
 
             CheckBombSpawn(blockType,ref bombsCount,blockCountInPack);
             
-
             var spawnPosition = DataHolder.SpawnZones.GetPointInRandomZone();
             var targetPosition = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth/2, cam.pixelHeight)); 
             

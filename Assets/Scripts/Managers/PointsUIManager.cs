@@ -1,8 +1,10 @@
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PointsUIManager : MonoBehaviour
 {
@@ -16,10 +18,13 @@ public class PointsUIManager : MonoBehaviour
     private Queue<TMP_Text> _tmpTextPull = new Queue<TMP_Text>();
     private List<ActiveText> _activeTexts = new List<ActiveText>();
 
+
     void Awake()
     {
         ThisInstance = this;
         _transform = transform;
+
+       
 
         for (int i = 0; i < pullSize; i++)
         {
@@ -36,50 +41,67 @@ public class PointsUIManager : MonoBehaviour
         public float Timer;
         public Vector3 StartPosition;
 
+        Vector2 moveDir;
+        public ActiveText()
+        {
+            moveDir = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1));
+        }
+
         public void MoveText()
         {
-            float delta = 1.0f - (Timer / Duration);
-            var pos = StartPosition + new Vector3(delta, delta, 0);
+            var delta = (Timer / Duration) * moveDir;
+            var pos = StartPosition + new Vector3(delta.x, delta.y, 0);
             pos.z = 0;
             TMPText.transform.position = pos;
         }
     }
 
-    public void AddText(int amount, Vector3 startPos)
+    public void AddText(int amount, Vector3 spawnPosition)
     {
-        var t = _tmpTextPull.Dequeue();
-        t.text = amount.ToString();
-        t.gameObject.SetActive(true);
+        TMP_Text textObj;
+        try
+        {
+            textObj = _tmpTextPull.Dequeue();
+        }
+        catch(InvalidOperationException e)
+        {
+            textObj = Instantiate(prefab, _transform);
+        }
+        
+        
 
-        ActiveText at = new ActiveText() { Duration = duration};
-        at.Timer = at.Duration;
-        at.TMPText = t;
-        at.StartPosition = startPos + Vector3.up;
-        at.MoveText();
-        _activeTexts.Add(at);
+        textObj.text = amount.ToString();
+        textObj.gameObject.SetActive(true);
+
+        ActiveText activeTextObj = new ActiveText() { Duration = duration};
+        activeTextObj.Timer = activeTextObj.Duration;
+        activeTextObj.TMPText = textObj;
+        activeTextObj.StartPosition = spawnPosition + Vector3.up;
+        activeTextObj.MoveText();
+        _activeTexts.Add(activeTextObj);
     }
 
     private void Update()
     {
         for (int i = 0; i < _activeTexts.Count; i++)
         {
-            ActiveText at = _activeTexts[i];
-            at.Timer -= Time.deltaTime;
+            ActiveText activeTextObj = _activeTexts[i];
+            activeTextObj.Timer -= Time.deltaTime;
 
-            if (at.Timer <= 0)
+            if (activeTextObj.Timer <= 0)
             {
-                at.TMPText.gameObject.SetActive(false);
-                _tmpTextPull.Enqueue(at.TMPText);
+                activeTextObj.TMPText.gameObject.SetActive(false);
+                _tmpTextPull.Enqueue(activeTextObj.TMPText);
                 _activeTexts.RemoveAt(i);
                 --i;
             }
             else
             {
-                var color = at.TMPText.color;
-                color.a = at.Timer / at.Duration;
-                at.TMPText.color = color;
+                var color = activeTextObj.TMPText.color;
+                color.a = activeTextObj.Timer / activeTextObj.Duration;
+                activeTextObj.TMPText.color = color;
                 
-                at.MoveText();
+                activeTextObj.MoveText();
             }
         }
     }

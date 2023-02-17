@@ -26,6 +26,11 @@ public class BlockPart: MonoBehaviour
 
     public virtual void Update()
     {
+        CheckOutFromScreen();
+    }
+
+    public virtual void CheckOutFromScreen()
+    {
         if (transform.position.y <= DataHolder.DeathZone.StartPoint.y - 3)
         {
             readyToSpawn = true;

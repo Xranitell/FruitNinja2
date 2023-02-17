@@ -19,10 +19,6 @@ public class TimeManager : MonoBehaviour
     public void ChangeTimeScale(float delay, float duration, AnimationCurve timeChangeAnimation)
     {
         this._timeChangeAnimation = timeChangeAnimation;
-        if (_slowTimeCoroutine != null)
-        {
-            StopCoroutine(_slowTimeCoroutine);
-        }
         
         _slowTimeCoroutine = StartCoroutine(SlowTime(delay, duration));
     }
@@ -46,5 +42,6 @@ public class TimeManager : MonoBehaviour
         
         FreezeEffect.EndFreezeScreen();
         _timer = 0;
+        StopCoroutine(_slowTimeCoroutine);
     }
 }

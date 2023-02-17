@@ -5,6 +5,8 @@ using UnityEngine.Events;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private float maxTimeBetweenCuts = 0.1f;
+    [SerializeField] private int maxComboCount = 10;
+
     public Vector3 lastFruitPos;
     public UnityAction<int> OnComboEnded;
     public UnityAction<int> OnScoreUpdated;
@@ -38,7 +40,11 @@ public class ScoreManager : MonoBehaviour
 
     public void RegisterNewCut(Fruit fruit)
     {
-        _multiplier++;
+        if(maxComboCount > _multiplier)
+        {
+            _multiplier++;
+        }
+
         _pointsInCombo += fruit.points;
         lastFruitPos = fruit.wholeBlock.transform.position;
         _timer = 0;

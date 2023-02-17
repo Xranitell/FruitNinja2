@@ -3,17 +3,30 @@ using UnityEngine;
 public class WholeBlock : BlockPart
 {
     [SerializeField][Range(0,10)] float colliderRadius = 1;
+    bool canRemoveHealth = false;
 
     private void Start()
     {
         isWhole = true;
+        
+    }
+
+    private void OnEnable()
+    {
+       canRemoveHealth = !Samurai.isSamuraiEvent;
     }
 
     public override void Update()
     {
-        base.Update();
+        if(canRemoveHealth)
+        {
+            CheckOutFromScreen();
+        }
+        
         CheckBlockOnCut();
     }
+
+
     
     private void CheckBlockOnCut()
     {
@@ -27,6 +40,8 @@ public class WholeBlock : BlockPart
             }
         }
     }
+
+    
 
     private void OnDrawGizmos()
     {

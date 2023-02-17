@@ -20,17 +20,17 @@ public class ScoreLabels : MonoBehaviour
     {
         DataHolder.ScoreManager.OnScoreUpdated += UpdateLabels;
         currentScoreAnimation.SetText("", 0);
-        recordScoreAnimation.SetText("Лучший: ",RecordScore);
+        recordScoreAnimation.StartAnimation("Лучший: ",RecordScore);
     }
 
     private void UpdateLabels(int newValue)
     {
-        currentScoreAnimation.StartAnimation(newValue,"");
+        currentScoreAnimation.StartAnimation("", newValue);
         CurrentScore = newValue;
             
         if (CurrentScore >= RecordScore)
         {
-            recordScoreAnimation.StartAnimation(newValue,"Лучший: ");
+            recordScoreAnimation.StartAnimation("Лучший: ",newValue);
             RecordScore = newValue;
         }
     }
