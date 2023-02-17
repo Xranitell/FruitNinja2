@@ -1,18 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrickInfo : MonoBehaviour
+[CreateAssetMenu (menuName = "Blocks/Brick")]
+public class BrickInfo : BlockInfo
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public override Type BlockType { get; set; } = typeof(Brick);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

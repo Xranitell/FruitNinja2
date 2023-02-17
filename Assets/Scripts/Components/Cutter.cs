@@ -7,7 +7,16 @@ public class Cutter : MonoBehaviour
     [SerializeField] [Range(0,500)] public float speedCutterForSlice = 500f;
     
     public Vector2 sliceVector;
-
+    public bool _touchIsActive;
+    public bool TouchIsActive
+    {
+        get => _touchIsActive;
+        set
+        {
+            _touchIsActive = value;
+            IsCutMove = value;
+        }
+    }
     public bool IsCutMove
     {
         get => _isCutMove;
@@ -39,35 +48,40 @@ public class Cutter : MonoBehaviour
         {
             StopCut();
             IsCutMove = false;
+            TouchIsActive = false;
         }
         else if (Input.GetMouseButtonDown(0))
         {
             MoveCut(Input.mousePosition);
             sliceTrail.enabled = true;
+            TouchIsActive = true;
         }
     }
 
     void MoveCut(Vector3 touchPosition)
     {
-        var pointOnCanvas = DataHolder.MainCamera.ScreenToWorldPoint(touchPosition);
-        pointOnCanvas.z = 0;
-
-        transform.position = Vector3.Lerp(transform.position,pointOnCanvas,1f) ;
-
-        sliceVector = transform.position - _lastPos;
-        _speed = sliceVector.magnitude / Time.deltaTime;
-
-        if (_speed > speedCutterForSlice)
+        if(TouchIsActive)
         {
-            IsCutMove = true;
-        }
-        else
-        {
-            IsCutMove = false;
-        }
+            var pointOnCanvas = DataHolder.MainCamera.ScreenToWorldPoint(touchPosition);
+            pointOnCanvas.z = 0;
+
+            transform.position = Vector3.Lerp(transform.position, pointOnCanvas, 1f);
+
+            sliceVector = transform.position - _lastPos;
+            _speed = sliceVector.magnitude / Time.deltaTime;
+
+            if (_speed > speedCutterForSlice)
+            {
+                IsCutMove = true;
+            }
+            else
+            {
+                IsCutMove = false;
+            }
         ;
 
-        _lastPos = transform.position;
+            _lastPos = transform.position;
+        }
     }
 
     void StopCut()

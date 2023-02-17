@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 486b1e57a1a0f8540b539c1d0f408359, type: 3}
-  m_Name: Samurai
+  m_Script: {fileID: 11500000, guid: e067e9de66971b1449078e1925480695, type: 3}
+  m_Name: Brick
   m_EditorClassIdentifier: 
-  priority: 24
+  priority: 80
   mass: 4
   useAnimation: 1
   animRotation: {x: -0.5, y: 0.5}
@@ -24,7 +24,7 @@ MonoBehaviour:
   useTrail: 1
   trailColorGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0, a: 1}
+    key0: {r: 0.6415094, g: 0.21609944, b: 0, a: 1}
     key1: {r: 0.9150943, g: 0.58019257, b: 0.07251684, a: 0.27450982}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -52,21 +52,8 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   trailRenderer: {fileID: 4070852360900587259, guid: 9f1f7e28b4dee45418bdf04b318f70d8, type: 3}
-  wholeBlockSprite: {fileID: 21300000, guid: 12af14576ad33464db87d38eaef9b437, type: 3}
+  wholeBlockSprite: {fileID: 21300000, guid: f82178ba3e0d6944a83873c9fe7d7d54, type: 3}
   useSpecialSprites: 0
   specialBlockPartsSprites: []
   destroyParticle: {fileID: 9104116886370712655, guid: f825bc2353ac4054695f3fae19973aea, type: 3}
   useOffsetAndRotation: 1
-  countMultiplier: 3
-  delayBetweenPacksMultiplier: 0.15
-  duration: 6.1
-  waitTimeToNextSpawn: 1.5
-  blocks2Spawn:
-  - {fileID: 11400000, guid: 539f214f6f10bd745a1b152343b2c5b4, type: 2}
-  - {fileID: 11400000, guid: 14f8cf52c5184f742bdaf2a608a8b91a, type: 2}
-  - {fileID: 11400000, guid: 3ddb85f791315fb4c88832bdfb640447, type: 2}
-  - {fileID: 11400000, guid: 9ce1bac85fbc02a4bb2f22b9aa7a4baa, type: 2}
-  - {fileID: 11400000, guid: c2433c83ede833d41b1bfbef2c41c721, type: 2}
-  - {fileID: 11400000, guid: b70f4826d9163c442b6c296593984d5a, type: 2}
-  - {fileID: 11400000, guid: 66579d8efe13f244f9e96f5c5fa36aec, type: 2}
-  - {fileID: 11400000, guid: fe78b790420894d4fa58f354d0ba2f61, type: 2}

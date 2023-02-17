@@ -3984,6 +3984,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 66579d8efe13f244f9e96f5c5fa36aec, type: 2}
   - {fileID: 11400000, guid: fe78b790420894d4fa58f354d0ba2f61, type: 2}
   - {fileID: 11400000, guid: 7bbf9126f8bb6464a8aacae454848992, type: 2}
+  - {fileID: 11400000, guid: d707ffbf0015b2d498b38a55c067370b, type: 2}
 --- !u!1 &2119471926
 GameObject:
   m_ObjectHideFlags: 0
@@ -4148,6 +4149,7 @@ MonoBehaviour:
   strengthOfCut: 2
   speedCutterForSlice: 20
   sliceVector: {x: 0, y: 0}
+  _touchIsActive: 0
   _isCutMove: 0
 --- !u!1 &2136691469
 GameObject:

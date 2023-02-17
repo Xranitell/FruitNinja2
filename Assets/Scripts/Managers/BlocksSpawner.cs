@@ -37,7 +37,7 @@ public partial class BlocksSpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(delayBetweenPacks.Evaluate(Time.timeSinceLevelLoad) * delayBetweenPacksMultiplier);
-            StartCoroutine(SpawnPack());
+            StartCoroutine( SpawnPack());
         }
     }
     private IEnumerator SpawnPack()
