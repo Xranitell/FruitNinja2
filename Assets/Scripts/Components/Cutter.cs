@@ -8,6 +8,11 @@ public class Cutter : MonoBehaviour
     
     public Vector2 sliceVector;
     public bool _touchIsActive;
+    public bool _isCutMove;
+
+    private float _speed;
+    private Vector3 _lastPos;
+
     public bool TouchIsActive
     {
         get => _touchIsActive;
@@ -23,14 +28,10 @@ public class Cutter : MonoBehaviour
         private set
         {
             _isCutMove = value;
-            sliceTrail.startColor =Color.Lerp(sliceTrail.startColor,IsCutMove? Color.red:Color.gray,1f) ;
+            sliceTrail.startColor = Color.Lerp(sliceTrail.startColor, IsCutMove ? Color.red : Color.gray, 1f);
         }
     }
-    public bool _isCutMove;
-    
-    private float _speed;
-    private Vector3 _lastPos;
-    
+
 
     private void Awake()
     {
@@ -53,9 +54,21 @@ public class Cutter : MonoBehaviour
         else if (Input.GetMouseButtonDown(0))
         {
             MoveCut(Input.mousePosition);
+
+            transform.position = DataHolder.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+            sliceTrail.Clear();
+
             sliceTrail.enabled = true;
             TouchIsActive = true;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        sliceVector = transform.position - _lastPos;
+        _speed = sliceVector.magnitude / Time.deltaTime;
+        _lastPos = transform.position;
+        IsCutMove = _speed > speedCutterForSlice ? true : false;
     }
 
     void MoveCut(Vector3 touchPosition)
@@ -66,21 +79,6 @@ public class Cutter : MonoBehaviour
             pointOnCanvas.z = 0;
 
             transform.position = Vector3.Lerp(transform.position, pointOnCanvas, 1f);
-
-            sliceVector = transform.position - _lastPos;
-            _speed = sliceVector.magnitude / Time.deltaTime;
-
-            if (_speed > speedCutterForSlice)
-            {
-                IsCutMove = true;
-            }
-            else
-            {
-                IsCutMove = false;
-            }
-        ;
-
-            _lastPos = transform.position;
         }
     }
 

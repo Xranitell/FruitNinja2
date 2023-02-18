@@ -42,6 +42,6 @@ public class TimeManager : MonoBehaviour
         
         FreezeEffect.EndFreezeScreen();
         _timer = 0;
-        StopCoroutine(_slowTimeCoroutine);
+        StopCoroutine("SlowTime");
     }
 }
