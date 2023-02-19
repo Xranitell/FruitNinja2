@@ -3329,10 +3329,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.20153809
-      value: 1.0090942
-      inSlope: 0.06673927
-      outSlope: 0.06673927
+      time: 0.03565979
+      value: 1.9823608
+      inSlope: 0.050323896
+      outSlope: 0.050323896
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -3340,8 +3340,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 60
       value: 5
-      inSlope: 0.06673927
-      outSlope: 0.06673927
+      inSlope: 0.050323896
+      outSlope: 0.050323896
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -3375,10 +3375,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   force: {x: -2, y: 2}
   blocksStorage: {fileID: 991833192}
-  maxPercentOfBomb: 0.5
-  countMultiplier: 1
-  delayBetweenPacksMultiplier: 1
-  blocksToSpawn: []
+  CountMultiplier: 1
+  DelayBetweenPacksMultiplier: 1
+  blocksCollection: []
 --- !u!1 &1837471946
 GameObject:
   m_ObjectHideFlags: 0

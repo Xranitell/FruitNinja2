@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486b1e57a1a0f8540b539c1d0f408359, type: 3}
   m_Name: Samurai
   m_EditorClassIdentifier: 
-  priority: 24
+  priority: 20
+  moreThenOne: 1
+  maxPercentInPack: 1
   mass: 4
   useAnimation: 1
   animRotation: {x: -0.5, y: 0.5}

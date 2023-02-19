@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02579fa5d2bdd1d4baf487f10f9769dd, type: 3}
   m_Name: Bomb
   m_EditorClassIdentifier: 
-  priority: 24
+  priority: 110
   moreThenOne: 1
   maxPercentInPack: 0.5
   mass: 4

@@ -3,12 +3,11 @@ using UnityEngine;
 public class WholeBlock : BlockPart
 {
     [SerializeField][Range(0,10)] float colliderRadius = 1;
-    bool canRemoveHealth = false;
+    public bool canRemoveHealth = false;
 
     private void Start()
     {
         isWhole = true;
-        
     }
 
     private void OnEnable()
@@ -18,16 +17,10 @@ public class WholeBlock : BlockPart
 
     public override void Update()
     {
-        if(canRemoveHealth)
-        {
-            CheckOutFromScreen();
-        }
-        
+        CheckOutFromScreen();
         CheckBlockOnCut();
     }
 
-
-    
     private void CheckBlockOnCut()
     {
         if (DataHolder.Cutter.IsCutMove)

@@ -31,22 +31,23 @@ public partial class BlocksSpawner : MonoBehaviour
         StartCoroutine(SpawnPacks());
     }
 
-    private Coroutine PackCoroutine;
     private IEnumerator SpawnPacks()
     {
         while (true)
         {
             yield return new WaitForSeconds(delayBetweenPacks.Evaluate(Time.timeSinceLevelLoad) * DelayBetweenPacksMultiplier);
-            PackCoroutine = StartCoroutine( "SpawnPack");
+
+            StartCoroutine(SpawnPack());
         }
     }
-    private IEnumerator SpawnPack()
+    
+    IEnumerator SpawnPack()
     {
         var cam = DataHolder.MainCamera;
         var blockCountInPack = Mathf.RoundToInt(Random.Range(1,spawnCount.Evaluate(Time.timeSinceLevelLoad) * CountMultiplier));
         var blockList = GenerateBlockList(blockCountInPack);
 
-        foreach (var selectedBlock in blockList)
+        foreach (var selectedBlock in blockList.ToList())
         {
             var spawnPosition = DataHolder.SpawnZones.GetPointInRandomZone();
             var targetPosition = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth/2, cam.pixelHeight)); 
@@ -57,10 +58,10 @@ public partial class BlocksSpawner : MonoBehaviour
             ThrowBlock(block, throwVector, throwVector.magnitude + Random.Range(force.x,force.y));
             
             yield return new WaitForSeconds(delayBetweenSpawnBlocks.Evaluate(Time.timeSinceLevelLoad));
-            StopCoroutine(PackCoroutine);
+            StopCoroutine(nameof(SpawnPack));
         }
     }
-    
+
     public static Block SpawnBlock(BlockInfo blockInfo, Vector3 startPosition)
     {
         Block block = null;
@@ -96,25 +97,25 @@ public partial class BlocksSpawner : MonoBehaviour
 
 partial class BlocksSpawner
 {
+    private List<BlockInfo> blocksToSpawn = new List<BlockInfo>();
     List<BlockInfo> GenerateBlockList(int blockCountInPack)
     {
-        var blocksToSpawn = new List<BlockInfo>();
+        blocksToSpawn.Clear();
         while (blocksToSpawn.Count < blockCountInPack)
         {
-            //here we are check our block on contains in generated pack
+            //here we are check selected block on contains in generated pack
             var selectedBlock = BlockFactory.GetBlockByPriority(blocksCollection);
-            
-            //if block can be only one
-            var oneBlockLimitationCorrect = !selectedBlock.moreThenOne && !blocksToSpawn.Contains(selectedBlock);
-            
-            //if block limited in percents of blocks count in pack
             var blocksCount = 0;
             foreach (var x in blocksToSpawn)
             {
-                if (x == (selectedBlock)) blocksCount++;
+                if (x == selectedBlock) blocksCount++;
             }
-
-            double percentSelectedBlockTypesInPack = ((double)blocksCount+1 / (double)blockCountInPack);
+            
+            //if block can be only one
+            var oneBlockLimitationCorrect = !selectedBlock.moreThenOne && blocksCount == 0;
+            
+            //if block limited in percents of blocks count in pack
+            double percentSelectedBlockTypesInPack = (blocksCount+1) / (double)blockCountInPack;
             var percentLimitationCorrect = (selectedBlock.maxPercentInPack >= percentSelectedBlockTypesInPack) && selectedBlock.moreThenOne;
             
             // CanBeSpawned - unique property for blocks which can be edited
@@ -122,6 +123,7 @@ partial class BlocksSpawner
             {
                 blocksToSpawn.Add(selectedBlock);
             }
+
         }
         return blocksToSpawn;
     }
