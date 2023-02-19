@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Magnet
   m_EditorClassIdentifier: 
   priority: 37
+  moreThenOne: 1
+  maxPercentInPack: 1
   mass: 4
   useAnimation: 1
-  animRotation: {x: -2.6845636, y: 3.3951836}
+  animRotation: {x: -0.5, y: 0.5}
   animScale: {x: 0.9, y: 1.2}
   useShadow: 1
   shadowColor: {r: 0, g: 0, b: 0, a: 180}

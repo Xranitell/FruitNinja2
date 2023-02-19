@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2f03d81e4c1ba4fbab4f061e43ef48, type: 3}
   m_Name: Coconut
   m_EditorClassIdentifier: 
-  priority: 28
-  mass: 2
+  priority: 30
+  moreThenOne: 1
+  maxPercentInPack: 1
+  mass: 4
   useAnimation: 1
   animRotation: {x: -0.3, y: 0.3}
   animScale: {x: 0.9, y: 1.2}

@@ -20,21 +20,21 @@ public class Samurai : Block, IChanceChanger
     {
         var spawner = DataHolder.BlocksSpawner;
 
-        spawner.countMultiplier = samuraiInfo.countMultiplier;
-        spawner.delayBetweenPacksMultiplier = samuraiInfo.delayBetweenPacksMultiplier;
-        spawner.blocksToSpawn = samuraiInfo.blocks2Spawn;
+        spawner.CountMultiplier = samuraiInfo.countMultiplier;
+        spawner.DelayBetweenPacksMultiplier = samuraiInfo.delayBetweenPacksMultiplier;
+        spawner.blocksCollection = samuraiInfo.blocks2Spawn;
         isSamuraiEvent = true;
 
         yield return new WaitForSeconds(samuraiInfo.duration);
 
-        spawner.countMultiplier = 0;
-        spawner.delayBetweenPacksMultiplier = samuraiInfo.waitTimeToNextSpawn;
+        spawner.CountMultiplier = 0;
+        spawner.DelayBetweenPacksMultiplier = samuraiInfo.waitTimeToNextSpawn;
 
         yield return new WaitForSeconds(samuraiInfo.waitTimeToNextSpawn);
 
-        spawner.countMultiplier = 1;
-        spawner.delayBetweenPacksMultiplier = 1;
-        spawner.blocksToSpawn = DataHolder.BlockFactory.BlockInfos;
+        spawner.CountMultiplier = 1;
+        spawner.DelayBetweenPacksMultiplier = 1;
+        spawner.blocksCollection = DataHolder.BlockFactory.BlockInfos;
         isSamuraiEvent = false;
 
         StopCoroutine(samuraiCorutine);

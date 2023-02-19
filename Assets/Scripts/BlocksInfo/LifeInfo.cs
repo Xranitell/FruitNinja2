@@ -5,9 +5,7 @@ using UnityEngine;
 public class LifeInfo : BlockInfo,IChanceChanger
 {
     public override Type BlockType { get; set; } = typeof(Life);
-    public static bool CanBeSpawned { get; set; }
-    public override float ChanceToSpawn => CanBeSpawned ? BustChangedChance(priority) : 0;
-
+    public override bool CanBeSpawned => !DataHolder.HealthManager.LivesIsFull;
     public float BustChangedChance(float chance)
     {
         chance *= DataHolder.BlocksSpawner.BoostChanceCurve.Evaluate(Time.time);

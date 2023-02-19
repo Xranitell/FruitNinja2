@@ -10,7 +10,7 @@ public class IceInfo: BlockInfo, IChanceChanger
     public float updateRate = 0.02f;
     public float timeDuration = 5f;
 
-    public override float ChanceToSpawn => BustChangedChance(priority);
+    public override float Priority => BustChangedChance(priority);
 
     public float BustChangedChance(float chance)
     {

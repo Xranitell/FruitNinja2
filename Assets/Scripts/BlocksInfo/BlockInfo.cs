@@ -1,15 +1,18 @@
 using System;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public abstract class BlockInfo : ScriptableObject
 {
-    [SerializeField][Range(0, 500)] protected float priority;
-
+    
+    [BoxGroup("Spawn properties")][SerializeField][Range(0, 500)] protected float priority;
+    [BoxGroup("Spawn properties")][SerializeField] public bool moreThenOne = true;
+    [BoxGroup("Spawn properties")][ShowIf("moreThenOne")][SerializeField] [Range(0, 1)] public float maxPercentInPack = 1;
     public float mass = 4;
     
-    public virtual float ChanceToSpawn => priority;
+    public virtual float Priority => priority;
     public abstract Type BlockType { get; set; }
 
     [BoxGroup("Animation")]public bool useAnimation;
@@ -32,7 +35,10 @@ public abstract class BlockInfo : ScriptableObject
     
     public ParticleSystem destroyParticle;
     public bool useOffsetAndRotation;
+    public virtual bool CanBeSpawned { get; set; } = true;
+    
     private Sprite[] _blockPartSprites = null;
+    
     
     public GameObject BlockPrefab { get; set; }
     public Sprite[] BlockPartSprites

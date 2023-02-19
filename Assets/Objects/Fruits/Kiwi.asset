@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2f03d81e4c1ba4fbab4f061e43ef48, type: 3}
   m_Name: Kiwi
   m_EditorClassIdentifier: 
-  priority: 34
+  priority: 30
+  moreThenOne: 1
+  maxPercentInPack: 1
   mass: 4
   useAnimation: 1
   animRotation: {x: -0.37869817, y: 0.3313613}

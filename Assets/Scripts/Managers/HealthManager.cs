@@ -6,25 +6,17 @@ public class HealthManager : MonoBehaviour
     public UnityAction<int> OnHealthChanged;
     public UnityAction OnHealthEnded;
 
-    public int CurrentHealth { get; private set; }
+    private int CurrentHealth { get; set; }
+    public bool LivesIsFull => CurrentHealth >= maxHealth;
 
     [SerializeField] public int startHealth;
     [SerializeField][Range(1,20)] public int maxHealth;
-
-    public bool LivesIsFull()
-    {
-        return CurrentHealth >= maxHealth ? true : false;
-    }
+    
     
     private void Awake()
     {
         DataHolder.HealthManager = this;
         CurrentHealth = startHealth;
-        
-        if (CurrentHealth >= maxHealth)
-        {
-            LifeInfo.CanBeSpawned = false;
-        }
     }
 
     public void ChangeHealthValue(int value)

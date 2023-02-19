@@ -148,15 +148,16 @@ partial class BlockFactory
     #endregion
     public static BlockInfo GetBlockByPriority(List<BlockInfo> blocks)
     {
-        float maxValue = blocks.Sum(x => x.ChanceToSpawn);;
+        float maxValue = 0;
+        foreach (var x in blocks) maxValue += x.Priority;
         float randomValue = Random.Range(0,maxValue);
         float currentValue = 0;
 
         foreach (var blockData in blocks)
         {
-            if (currentValue + blockData.ChanceToSpawn < randomValue)
+            if (currentValue + blockData.Priority < randomValue)
             {
-                currentValue += blockData.ChanceToSpawn;
+                currentValue += blockData.Priority;
             }
             else
             {

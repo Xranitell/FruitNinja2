@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e067e9de66971b1449078e1925480695, type: 3}
   m_Name: Brick
   m_EditorClassIdentifier: 
-  priority: 47
+  priority: 29
+  moreThenOne: 1
+  maxPercentInPack: 1
   mass: 4
   useAnimation: 1
   animRotation: {x: -0.5, y: 0.5}

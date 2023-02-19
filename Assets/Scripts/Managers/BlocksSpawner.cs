@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,47 +17,37 @@ public partial class BlocksSpawner : MonoBehaviour
     [MinMaxSlider(-10,10)] public Vector2 force;
     [SerializeField] private Transform blocksStorage;
 
-    [Range(0, 1)] [SerializeField] private float maxPercentOfBomb = 0.5f;
+    public float CountMultiplier = 1;
+    public float DelayBetweenPacksMultiplier = 1;
 
-    public float countMultiplier = 1;
-    public float delayBetweenPacksMultiplier = 1;
-
-    public List<BlockInfo> blocksToSpawn;
+    public List<BlockInfo> blocksCollection;
 
     public AnimationCurve BoostChanceCurve => boostSpawnChance;
     
     private void Start()
     {
         DataHolder.BlocksSpawner = this;
-        blocksToSpawn = DataHolder.BlockFactory.BlockInfos;
+        blocksCollection = DataHolder.BlockFactory.BlockInfos;
         StartCoroutine(SpawnPacks());
     }
-    
+
+    private Coroutine PackCoroutine;
     private IEnumerator SpawnPacks()
     {
         while (true)
         {
-            yield return new WaitForSeconds(delayBetweenPacks.Evaluate(Time.timeSinceLevelLoad) * delayBetweenPacksMultiplier);
-            StartCoroutine( SpawnPack());
+            yield return new WaitForSeconds(delayBetweenPacks.Evaluate(Time.timeSinceLevelLoad) * DelayBetweenPacksMultiplier);
+            PackCoroutine = StartCoroutine( "SpawnPack");
         }
     }
     private IEnumerator SpawnPack()
     {
         var cam = DataHolder.MainCamera;
-        var bombsCount = 0;
-        
-        BombInfo.CanBeSpawned = true;
-        LifeInfo.CanBeSpawned = !DataHolder.HealthManager.LivesIsFull();
+        var blockCountInPack = Mathf.RoundToInt(Random.Range(1,spawnCount.Evaluate(Time.timeSinceLevelLoad) * CountMultiplier));
+        var blockList = GenerateBlockList(blockCountInPack);
 
-        var blockCountInPack = Mathf.RoundToInt(Random.Range(1,spawnCount.Evaluate(Time.timeSinceLevelLoad) * countMultiplier));
-        
-        for (int i = 0; i < blockCountInPack; i++)
+        foreach (var selectedBlock in blockList)
         {
-            var selectedBlock = BlockFactory.GetBlockByPriority(blocksToSpawn);
-            var blockType = selectedBlock.GetType();
-
-            CheckBombSpawn(blockType,ref bombsCount,blockCountInPack);
-            
             var spawnPosition = DataHolder.SpawnZones.GetPointInRandomZone();
             var targetPosition = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth/2, cam.pixelHeight)); 
             
@@ -66,6 +57,7 @@ public partial class BlocksSpawner : MonoBehaviour
             ThrowBlock(block, throwVector, throwVector.magnitude + Random.Range(force.x,force.y));
             
             yield return new WaitForSeconds(delayBetweenSpawnBlocks.Evaluate(Time.timeSinceLevelLoad));
+            StopCoroutine(PackCoroutine);
         }
     }
     
@@ -104,16 +96,34 @@ public partial class BlocksSpawner : MonoBehaviour
 
 partial class BlocksSpawner
 {
-    void CheckBombSpawn(Type blockType, ref int bombsCount, int blockCountInPack)
+    List<BlockInfo> GenerateBlockList(int blockCountInPack)
     {
-        if (blockType == typeof(Bomb))
+        var blocksToSpawn = new List<BlockInfo>();
+        while (blocksToSpawn.Count < blockCountInPack)
         {
-            bombsCount++;
-            if ((bombsCount) / blockCountInPack > maxPercentOfBomb)
+            //here we are check our block on contains in generated pack
+            var selectedBlock = BlockFactory.GetBlockByPriority(blocksCollection);
+            
+            //if block can be only one
+            var oneBlockLimitationCorrect = !selectedBlock.moreThenOne && !blocksToSpawn.Contains(selectedBlock);
+            
+            //if block limited in percents of blocks count in pack
+            var blocksCount = 0;
+            foreach (var x in blocksToSpawn)
             {
-                BombInfo.CanBeSpawned = false;
+                if (x == (selectedBlock)) blocksCount++;
+            }
+
+            double percentSelectedBlockTypesInPack = ((double)blocksCount+1 / (double)blockCountInPack);
+            var percentLimitationCorrect = (selectedBlock.maxPercentInPack >= percentSelectedBlockTypesInPack) && selectedBlock.moreThenOne;
+            
+            // CanBeSpawned - unique property for blocks which can be edited
+            if ((oneBlockLimitationCorrect || percentLimitationCorrect) && selectedBlock.CanBeSpawned)
+            {
+                blocksToSpawn.Add(selectedBlock);
             }
         }
+        return blocksToSpawn;
     }
 }
 
