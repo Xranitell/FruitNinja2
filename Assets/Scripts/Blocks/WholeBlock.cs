@@ -3,7 +3,7 @@ using UnityEngine;
 public class WholeBlock : BlockPart
 {
     [SerializeField][Range(0,10)] float colliderRadius = 1;
-    public bool canRemoveHealth = false;
+    bool canRemoveHealth = false;
 
     private void Start()
     {
@@ -18,7 +18,11 @@ public class WholeBlock : BlockPart
 
     public override void Update()
     {
-        CheckOutFromScreen();
+        if(canRemoveHealth)
+        {
+            CheckOutFromScreen();
+        }
+        
         CheckBlockOnCut();
     }
 
@@ -37,16 +41,7 @@ public class WholeBlock : BlockPart
         }
     }
 
-    public override void CheckOutFromScreen()
-    {
-        if (transform.position.y <= DataHolder.DeathZone.StartPoint.y - 3)
-        {
-            readyToSpawn = true;
-            gameObject.SetActive(false);
-            Block.OnReadyStatementChanged?.Invoke(isWhole);
-            DataHolder.AllActiveBlockParts.Remove(this);
-        }
-    }
+    
 
     private void OnDrawGizmos()
     {

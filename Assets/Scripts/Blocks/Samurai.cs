@@ -25,7 +25,7 @@ public class Samurai : Block, IChanceChanger
         spawner.blocksCollection = samuraiInfo.blocks2Spawn;
         isSamuraiEvent = true;
 
-        yield return new WaitForSeconds(samuraiInfo.duration);
+        yield return new WaitForSeconds(samuraiInfo.duration-1);
 
         spawner.CountMultiplier = 0;
         spawner.DelayBetweenPacksMultiplier = samuraiInfo.waitTimeToNextSpawn;

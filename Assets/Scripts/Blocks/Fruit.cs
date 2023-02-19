@@ -26,7 +26,7 @@ public class Fruit : Block
     {
         base.BlockOutFromScreen(isWhole);
         
-        if (isWhole && this.wholeBlock.canRemoveHealth)
+        if (isWhole && !Samurai.isSamuraiEvent)
         {
             DataHolder.HealthManager.ChangeHealthValue(-1);
         }

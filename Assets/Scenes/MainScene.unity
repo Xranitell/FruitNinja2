@@ -3373,7 +3373,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  force: {x: -2, y: 0.9637306}
+  force: {x: -2, y: 2}
   blocksStorage: {fileID: 991833192}
   maxPercentOfBomb: 0.5
   countMultiplier: 1
