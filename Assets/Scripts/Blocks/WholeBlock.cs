@@ -21,12 +21,14 @@ public class WholeBlock : BlockPart
         CheckBlockOnCut();
     }
 
+
+    
     private void CheckBlockOnCut()
     {
         if (DataHolder.Cutter.IsCutMove)
         {
             var dist2Cutter = (DataHolder.Cutter.transform.position - transform.position).magnitude;
-            if (colliderRadius >= dist2Cutter)
+            if (colliderRadius >= dist2Cutter )
             {
                 DataHolder.AllActiveBlockParts.Remove(this);
                 Block.OnCutBlock.Invoke();

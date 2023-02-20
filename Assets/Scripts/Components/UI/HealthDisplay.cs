@@ -3,15 +3,16 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class HealthDisplay : MonoBehaviour
 {
     public GameObject heartPrefab;
     
-    private readonly List<GameObject> _pullOfHearts = new List<GameObject>();
+    private readonly List<Image> _pullOfHearts = new List<Image>();
     private int _countOfActiveHearts;
 
-    public GameObject LastChangedHeart => _pullOfHearts[_countOfActiveHearts-1];
+    public Image LastChangedHeart => _pullOfHearts[_countOfActiveHearts-1];
 
     private void Awake()
     {
@@ -20,10 +21,10 @@ public class HealthDisplay : MonoBehaviour
         
         for (int i = 0; i < DataHolder.HealthManager.maxHealth; i++)
         {
-            var heart = Instantiate(heartPrefab, transform);
+            var heart = Instantiate(heartPrefab, transform).GetComponentInChildren<Image>();
             _pullOfHearts.Add(heart);
 
-            heart.SetActive(i < DataHolder.HealthManager.startHealth);
+            heart.enabled = i < DataHolder.HealthManager.startHealth;
 
             _countOfActiveHearts = DataHolder.HealthManager.startHealth;
         }
@@ -48,11 +49,11 @@ public class HealthDisplay : MonoBehaviour
         _countOfActiveHearts = newValue;
     }
 
-    void AnimateHeart(bool isDestroyAnimation ,GameObject heart)
+    void AnimateHeart(bool isDestroyAnimation ,Image heart)
     {
-        if (heart.active == false)
+        if (heart.enabled == false)
         {
-            heart.SetActive(true);
+            heart.enabled = true;
         }
         
         var endValue = isDestroyAnimation ? 0 : 1;
@@ -60,6 +61,6 @@ public class HealthDisplay : MonoBehaviour
 
         DOTween.Sequence()
             .Append(heart.transform.DOScale(endValue, 1))
-            .AppendCallback(()=>heart.gameObject.SetActive(!isDestroyAnimation));
+            .AppendCallback(()=>heart.enabled = (!isDestroyAnimation));
     }
 }

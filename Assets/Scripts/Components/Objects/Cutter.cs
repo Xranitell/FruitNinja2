@@ -52,9 +52,10 @@ public class Cutter : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0))
         {
-            MoveCut(Input.mousePosition);
             sliceTrail.enabled = true;
             TouchIsActive = true;
+            transform.position = DataHolder.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+            sliceTrail.Clear();
         }
     }
 
@@ -88,5 +89,6 @@ public class Cutter : MonoBehaviour
     {
         _speed = 0;
         sliceTrail.enabled = false;
+        
     }
 }

@@ -23,12 +23,12 @@ public class HealthManager : MonoBehaviour
     {
         CurrentHealth += value;
         
+        
         if (CurrentHealth <= 0)
         {
             CurrentHealth = 0;
             OnHealthEnded.Invoke();
         }
-        
         OnHealthChanged.Invoke(CurrentHealth);
     }
 }

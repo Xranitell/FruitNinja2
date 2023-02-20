@@ -20,11 +20,11 @@ public class BlockPartAnimation : MonoBehaviour
         DOTween.Sequence()
             .Append(transform.DOScale(Vector3.one * maxScale, 1f))
             .Append(transform.DOScale(Vector3.one, 1f))
-            .SetEase(Ease.InCubic);
+            .SetEase(Ease.InCubic).SetUpdate(false);
     }
 
     private void Update()
     {
-        transform.Rotate(Vector3.forward, _speedRotation);
+        transform.Rotate(Vector3.forward, _speedRotation * Time.timeScale);
     }
 }

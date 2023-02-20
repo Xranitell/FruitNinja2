@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486b1e57a1a0f8540b539c1d0f408359, type: 3}
   m_Name: Samurai
   m_EditorClassIdentifier: 
-  priority: 20
+  priority: 24
   moreThenOne: 1
   maxPercentInPack: 1
   mass: 4
@@ -59,9 +59,9 @@ MonoBehaviour:
   specialBlockPartsSprites: []
   destroyParticle: {fileID: 9104116886370712655, guid: f825bc2353ac4054695f3fae19973aea, type: 3}
   useOffsetAndRotation: 1
-  countMultiplier: 3
-  delayBetweenPacksMultiplier: 0.15
-  duration: 6.1
+  countMultiplier: 4
+  delayBetweenPacksMultiplier: 0.1
+  duration: 7
   waitTimeToNextSpawn: 1.5
   blocks2Spawn:
   - {fileID: 11400000, guid: 539f214f6f10bd745a1b152343b2c5b4, type: 2}

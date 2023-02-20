@@ -6,7 +6,8 @@ public class Brick : Block
 {
     protected override void BlockCut()
     {
-        base.BlockCut();
         DataHolder.Cutter.TouchIsActive = false;
+        destroyParticle.transform.position = wholeBlock.transform.position;
+        destroyParticle.Play();
     }
 }

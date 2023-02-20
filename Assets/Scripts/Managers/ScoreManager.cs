@@ -27,11 +27,6 @@ public class ScoreManager : MonoBehaviour
         
         if (_timer >= maxTimeBetweenCuts && _multiplier != 0)
         {
-            if (_multiplier > 1)
-            {
-                OnComboEnded.Invoke(_multiplier);
-            }
-            
             AddPoints(_pointsInCombo * _multiplier);
             _multiplier = 0;
             _pointsInCombo = 0;
@@ -45,6 +40,11 @@ public class ScoreManager : MonoBehaviour
             _multiplier++;
         }
 
+        if (_multiplier > 1)
+        {
+            OnComboEnded.Invoke(_multiplier);
+        }
+        
         _pointsInCombo += fruit.points;
         lastFruitPos = fruit.wholeBlock.transform.position;
         _timer = 0;

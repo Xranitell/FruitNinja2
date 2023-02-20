@@ -8,6 +8,7 @@ public class TimeManager : MonoBehaviour
     private static float _timer;
     private Coroutine _slowTimeCoroutine;
     private AnimationCurve _timeChangeAnimation;
+    [SerializeField] private float waitAfterPause = 1f;
 
     public static TimeManager Instance;
     private void Awake()
@@ -47,5 +48,33 @@ public class TimeManager : MonoBehaviour
         FreezeEffect.EndFreezeScreen();
         _timer = 0;
         StopCoroutine(_slowTimeCoroutine);
+    }
+
+    private float savedTimeScale;
+    private Coroutine pauseCoroutine;
+    public void SetPauseGameState(bool pause)
+    {
+        
+        if (pause)
+        {
+            if(Time.timeScale != 0 ) savedTimeScale = Time.timeScale;
+            Time.timeScale = 0;
+            DataHolder.Cutter.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (pauseCoroutine != null)
+            {
+                 StopCoroutine(pauseCoroutine);
+            }
+            pauseCoroutine = StartCoroutine(Wait());
+        }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSecondsRealtime(waitAfterPause);
+        Time.timeScale = savedTimeScale;
+        DataHolder.Cutter.gameObject.SetActive(true);
     }
 }

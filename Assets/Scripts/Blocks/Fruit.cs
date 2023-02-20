@@ -19,14 +19,14 @@ public class Fruit : Block
     {
         base.BlockCut();
         DataHolder.ScoreManager.RegisterNewCut(this);
-        PointsUIManager.ThisInstance.AddText(points,wholeBlock.transform.position);
+        PointsUIManager.ThisInstance.AddText(points,wholeBlock.transform.position, ((FruitInfo)blockInfo).particleColor.color);
     }
 
     protected override void BlockOutFromScreen(bool isWhole)
     {
         base.BlockOutFromScreen(isWhole);
         
-        if (isWhole && this.wholeBlock.canRemoveHealth)
+        if (isWhole && wholeBlock.canRemoveHealth)
         {
             DataHolder.HealthManager.ChangeHealthValue(-1);
         }

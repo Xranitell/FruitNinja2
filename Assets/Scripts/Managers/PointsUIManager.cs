@@ -56,7 +56,7 @@ public class PointsUIManager : MonoBehaviour
         }
     }
 
-    public void AddText(int amount, Vector3 spawnPosition)
+    public void AddText(int amount, Vector3 spawnPosition, Color textColor)
     {
         TMP_Text textObj;
         try
@@ -72,6 +72,8 @@ public class PointsUIManager : MonoBehaviour
 
         textObj.text = amount.ToString();
         textObj.gameObject.SetActive(true);
+
+        textObj.color = textColor ;
 
         ActiveText activeTextObj = new ActiveText() { Duration = duration};
         activeTextObj.Timer = activeTextObj.Duration;

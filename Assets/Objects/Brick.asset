@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e067e9de66971b1449078e1925480695, type: 3}
   m_Name: Brick
   m_EditorClassIdentifier: 
-  priority: 29
+  priority: 12
   moreThenOne: 1
   maxPercentInPack: 1
   mass: 4
@@ -57,5 +57,5 @@ MonoBehaviour:
   wholeBlockSprite: {fileID: 21300000, guid: f82178ba3e0d6944a83873c9fe7d7d54, type: 3}
   useSpecialSprites: 0
   specialBlockPartsSprites: []
-  destroyParticle: {fileID: 9104116886370712655, guid: f825bc2353ac4054695f3fae19973aea, type: 3}
+  destroyParticle: {fileID: 9104116886370712655, guid: 1003dbc47918e0848a765f1a8f07e1d7, type: 3}
   useOffsetAndRotation: 1

@@ -13,6 +13,7 @@ public class BlockPart: MonoBehaviour
 
     private void Awake()
     {
+        
         isWhole = false;
         Block = GetComponentInParent<Block>();
     }
@@ -28,7 +29,7 @@ public class BlockPart: MonoBehaviour
         CheckOutFromScreen();
     }
 
-    protected void CheckOutFromScreen()
+    public virtual void CheckOutFromScreen()
     {
         if (transform.position.y <= DataHolder.DeathZone.StartPoint.y - 3)
         {
