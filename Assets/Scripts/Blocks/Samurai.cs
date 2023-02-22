@@ -13,6 +13,7 @@ public class Samurai : Block, IChanceChanger
         samuraiInfo = (SamuraiInfo)blockInfo;
         base.BlockCut();
 
+        SamuraiEvent.instance.StartAnimation();
         samuraiCorutine = StartCoroutine(SamuraiCorutine());
     }
    

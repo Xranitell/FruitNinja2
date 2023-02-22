@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private float waitAfterPause = 1f;
 
     public static TimeManager Instance;
+
+    [SerializeField] private Button PauseButton;
     private void Awake()
     {
         Instance = this;
@@ -76,5 +79,6 @@ public class TimeManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(waitAfterPause);
         Time.timeScale = savedTimeScale;
         DataHolder.Cutter.gameObject.SetActive(true);
+        PauseButton.interactable = true;
     }
 }

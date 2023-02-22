@@ -22,7 +22,7 @@ public class Fade : MonoBehaviour
                 AppendCallback(()=>image.color = Color.black).
                 Append(image.DOFade(0, fadeDuration)).
                 SetEase(Ease.InQuad).
-                AppendInterval(0.5f);
+                AppendInterval(0.5f).SetUpdate(true);
         }
     }
 

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d825ee088bec44c2b31a587507bcd0d6, type: 3}
   m_Name: Ice
   m_EditorClassIdentifier: 
-  priority: 41
+  priority: 10
+  moreThenOne: 1
+  maxPercentInPack: 1
   mass: 4
   useAnimation: 1
   animRotation: {x: -0.49704137, y: 0.4023672}
