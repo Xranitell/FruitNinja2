@@ -105,7 +105,7 @@ partial class BlocksSpawner
             var selectedBlock = BlockFactory.GetBlockByPriority(blocksCollection);
             
             //if block can be only one
-            var oneBlockLimitationCorrect = selectedBlock.moreThenOne && !blocksToSpawn.Contains(selectedBlock);
+            var oneBlockLimitationCorrect = !selectedBlock.moreThenOne && !blocksToSpawn.Contains(selectedBlock);
             
             //if block limited in percents of blocks count in pack
             var blocksCount = 0;

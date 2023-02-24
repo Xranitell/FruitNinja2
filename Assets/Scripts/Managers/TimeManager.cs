@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,12 +14,18 @@ public class TimeManager : MonoBehaviour
 
     public static TimeManager Instance;
 
-    [SerializeField] private Button PauseButton;
+    [SerializeField] public Button pauseButton;
+    [SerializeField] private PopUpAnimation pausePopUp;
+
+    private bool _gamePaused;
+    
     private void Awake()
     {
+        DOTween.SetTweensCapacity(500,312);
         Instance = this;
+        pausePopUp.OnPopUpShowed += PauseGame;
+        pausePopUp.OnPopUpHided += UnPauseGame;
     }
-
 
     public void ChangeTimeScale(float delay, float duration, AnimationCurve timeChangeAnimation)
     {
@@ -31,6 +38,8 @@ public class TimeManager : MonoBehaviour
         _slowTimeCoroutine = StartCoroutine(SlowTime(delay, duration));
     }
     
+    
+    
     IEnumerator SlowTime(float delay, float duration)
     {
         if (_timer == 0)
@@ -42,9 +51,12 @@ public class TimeManager : MonoBehaviour
 
         while (_timer < duration)
         {
-            _timer += delay;
-            var timeScale = _timeChangeAnimation.Evaluate(_timer/duration);
-            Time.timeScale = timeScale;
+            if (!_gamePaused)
+            {
+                _timer += delay;
+                var timeScale = _timeChangeAnimation.Evaluate(_timer/duration);
+                Time.timeScale = timeScale;
+            }
             yield return new WaitForSecondsRealtime(delay);
         }
         
@@ -53,32 +65,34 @@ public class TimeManager : MonoBehaviour
         StopCoroutine(_slowTimeCoroutine);
     }
 
-    private float savedTimeScale;
-    private Coroutine pauseCoroutine;
-    public void SetPauseGameState(bool pause)
+    public void SetTimeScale(float timeScale) => Time.timeScale = timeScale;
+    private float _savedTimeScale;
+    private Coroutine _pauseCoroutine;
+    
+    public void UnPauseGame()
     {
-        
-        if (pause)
+        if (_pauseCoroutine != null)
         {
-            if(Time.timeScale != 0 ) savedTimeScale = Time.timeScale;
-            Time.timeScale = 0;
-            DataHolder.Cutter.gameObject.SetActive(false);
+            StopCoroutine(_pauseCoroutine);
         }
-        else
-        {
-            if (pauseCoroutine != null)
-            {
-                 StopCoroutine(pauseCoroutine);
-            }
-            pauseCoroutine = StartCoroutine(Wait());
-        }
+        _pauseCoroutine = StartCoroutine(Wait());
+        _gamePaused = false;
+    }
+
+    private void PauseGame()
+    {
+        if(Time.timeScale != 0 ) _savedTimeScale = Time.timeScale;
+        Time.timeScale = 0;
+        DataHolder.Cutter.enabled = false;
+        pauseButton.interactable = false;
+        _gamePaused = true;
     }
 
     IEnumerator Wait()
     {
         yield return new WaitForSecondsRealtime(waitAfterPause);
-        Time.timeScale = savedTimeScale;
-        DataHolder.Cutter.gameObject.SetActive(true);
-        PauseButton.interactable = true;
+        Time.timeScale = _savedTimeScale;
+        DataHolder.Cutter.enabled = true;
+        pauseButton.interactable = true;
     }
 }

@@ -20,8 +20,6 @@ public class WholeBlock : BlockPart
         CheckOutFromScreen();
         CheckBlockOnCut();
     }
-
-
     
     private void CheckBlockOnCut()
     {

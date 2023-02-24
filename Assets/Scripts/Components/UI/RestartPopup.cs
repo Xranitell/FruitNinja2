@@ -8,17 +8,18 @@ public class RestartPopup : MonoBehaviour
 {
     [SerializeField] private TMP_Text currentScoreTMP;
     [SerializeField] private TMP_Text recordScoreTMP;
-    
+
+    [SerializeField] private PopUpAnimation anim;
     private void Start()
     {
         DataHolder.HealthManager.OnHealthEnded += WaitPartsFalling;
+        DataHolder.HealthManager.OnHealthEnded += ()=>TimeManager.Instance.pauseButton.interactable = false;
     }
 
     void WaitPartsFalling()
     {
         DataHolder.BlocksSpawner.StopAllCoroutines();
         DataHolder.Cutter.gameObject.SetActive(false);
-
         StartCoroutine(BoardClear());
     }
 
@@ -33,7 +34,6 @@ public class RestartPopup : MonoBehaviour
 
     private void DisplayDeathPopup()
     {
-        
         transform.GetChild(0).gameObject.SetActive(true);
         currentScoreTMP.text = DataHolder.ScoreLabels.CurrentScore.ToString();
 
@@ -43,6 +43,6 @@ public class RestartPopup : MonoBehaviour
         }
 
         recordScoreTMP.text = "Лучший: " + DataHolder.ScoreLabels.RecordScore;
-        GetComponent<Animator>().SetTrigger("ShowPopUp");
+        anim.ShowPopUp();
     }
 }

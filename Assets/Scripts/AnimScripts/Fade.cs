@@ -35,6 +35,6 @@ public class Fade : MonoBehaviour
             Append(image.DOFade(1, fadeDuration)).
             SetEase(Ease.InQuad).
             AppendInterval(0.5f).
-            AppendCallback(()=>SceneManager.LoadScene(sceneName));
+            AppendCallback(()=>SceneManager.LoadScene(sceneName)).SetUpdate(true);
     }
 }

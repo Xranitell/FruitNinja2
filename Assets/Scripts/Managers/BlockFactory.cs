@@ -100,7 +100,6 @@ partial class BlockFactory
     private void AddSpriteRenderer(BlockPart obj,BlockInfo info)
     {
         var spriteRenderer = obj.gameObject.AddComponent<SpriteRenderer>();
-        obj.spriteRenderer = spriteRenderer;
         spriteRenderer.sortingLayerName = "Blocks";
         
         switch (obj.name)

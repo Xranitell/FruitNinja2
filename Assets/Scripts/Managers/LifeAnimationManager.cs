@@ -9,7 +9,7 @@ public class LifeAnimationManager : MonoBehaviour
 {
     [SerializeField] private Image prefab;
     
-    public static Queue<Image> allLives = new Queue<Image>();
+    public Queue<Image> allLives = new Queue<Image>();
 
     public static LifeAnimationManager instance;
 
@@ -20,12 +20,12 @@ public class LifeAnimationManager : MonoBehaviour
 
     public static void StartAnimation(Vector3 startPosition)
     {
-        if (allLives.Count == 0)
+        if (instance.allLives.Count == 0)
         {
-            allLives.Enqueue(Instantiate(instance.prefab, instance.transform));
+            instance.allLives.Enqueue(Instantiate(instance.prefab, instance.transform));
         }
 
-        var life = allLives.Dequeue();
+        var life = instance.allLives.Dequeue();
 
         life.transform.localScale = Vector3.one;
         
@@ -37,6 +37,6 @@ public class LifeAnimationManager : MonoBehaviour
             .AppendCallback(() => DataHolder.HealthManager.ChangeHealthValue(1))
             .Append(life.transform.DOScale(Vector3.one * 0.5f,1f))
             .AppendCallback(()=> life.transform.localScale = Vector3.zero)
-            .AppendCallback(()=> allLives.Enqueue(life));
+            .AppendCallback(()=> instance.allLives.Enqueue(life));
     }
 }

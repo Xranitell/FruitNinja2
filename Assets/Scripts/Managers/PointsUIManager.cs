@@ -63,7 +63,7 @@ public class PointsUIManager : MonoBehaviour
         {
             textObj = _tmpTextPull.Dequeue();
         }
-        catch(InvalidOperationException e)
+        catch(InvalidOperationException)
         {
             textObj = Instantiate(prefab, _transform);
         }
