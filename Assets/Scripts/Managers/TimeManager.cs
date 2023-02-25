@@ -44,7 +44,7 @@ public class TimeManager : MonoBehaviour
     {
         if (_timer == 0)
         {
-            FreezeEffect.StartFreezeScreen();
+            FreezeEffect.Instance.StartFreezeScreen();
         }
 
         _timer = 0;
@@ -60,7 +60,7 @@ public class TimeManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(delay);
         }
         
-        FreezeEffect.EndFreezeScreen();
+        FreezeEffect.Instance.EndFreezeScreen();
         _timer = 0;
         StopCoroutine(_slowTimeCoroutine);
     }

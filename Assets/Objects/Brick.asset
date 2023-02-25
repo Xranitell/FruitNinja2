@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Brick
   m_EditorClassIdentifier: 
   priority: 10
-  moreThenOne: 1
+  moreThenOne: 0
   maxPercentInPack: 1
   mass: 4
   useAnimation: 1

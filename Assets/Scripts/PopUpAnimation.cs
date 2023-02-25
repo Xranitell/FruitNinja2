@@ -10,6 +10,7 @@ public class PopUpAnimation : MonoBehaviour
     [SerializeField] private Image fadeImage;
     [SerializeField] private GameObject content;
     [SerializeField] private float animDuration;
+    [SerializeField] private Image blur;
 
     [SerializeField] private float maxFadeValue;
     
@@ -22,6 +23,7 @@ public class PopUpAnimation : MonoBehaviour
         DOTween.Sequence()
             .AppendCallback(()=>OnPopUpShowed?.Invoke())
             .Append(fadeImage.DOFade(maxFadeValue, animDuration))
+            .Append(blur.DOFade(maxFadeValue, animDuration))
             .Append(content.transform.DOScale(1, animDuration))
             .SetUpdate(true);
     }
@@ -31,6 +33,7 @@ public class PopUpAnimation : MonoBehaviour
         DOTween.Sequence()
             .AppendCallback(()=>OnPopUpHided?.Invoke())
             .Append(fadeImage.DOFade(0, animDuration))
+            .Append(blur.DOFade(0, animDuration))
             .Append(content.transform.DOScale(0, animDuration))
             .SetUpdate(true);
     }
