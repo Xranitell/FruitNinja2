@@ -59,7 +59,7 @@ MonoBehaviour:
   specialBlockPartsSprites: []
   destroyParticle: {fileID: 9104116886370712655, guid: f825bc2353ac4054695f3fae19973aea, type: 3}
   useOffsetAndRotation: 1
-  countMultiplier: 4
+  countMultiplier: 2
   delayBetweenPacksMultiplier: 0.1
   duration: 7
   waitTimeToNextSpawn: 1.5

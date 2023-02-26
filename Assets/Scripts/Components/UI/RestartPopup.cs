@@ -20,6 +20,8 @@ public class RestartPopup : MonoBehaviour
     {
         DataHolder.BlocksSpawner.StopAllCoroutines();
         DataHolder.Cutter.gameObject.SetActive(false);
+        DataHolder.Cutter._touchIsActive = false;
+        DataHolder.Cutter._isCutMove = false;
         StartCoroutine(BoardClear());
     }
 

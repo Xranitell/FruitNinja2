@@ -31,10 +31,19 @@ public class Fade : MonoBehaviour
         var image = GetComponent<Image>();
         
         DOTween.Sequence().
-            AppendCallback(()=>image.color = Color.clear).
             Append(image.DOFade(1, fadeDuration)).
             SetEase(Ease.InQuad).
             AppendInterval(0.5f).
             AppendCallback(()=>SceneManager.LoadScene(sceneName)).SetUpdate(true);
+    } 
+    public void ExitGame()
+    {
+        var image = GetComponent<Image>();
+        
+        DOTween.Sequence().
+            Append(image.DOFade(1, fadeDuration)).
+            SetEase(Ease.InQuad).
+            AppendInterval(0.5f).
+            AppendCallback(()=>Application.Quit()).SetUpdate(true);
     }
 }
